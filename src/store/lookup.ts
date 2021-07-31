@@ -254,7 +254,7 @@ async function lookup(browser: Browser, store: Store) {
     let statusCode = 0;
 
     try {
-      statusCode = await lookupIem(browser, store, page, link);
+      statusCode = await lookupItem(browser, store, page, link);
     } catch (error: unknown) {
       if (store.currentProxyIndex !== undefined && store.proxyList) {
         const proxy = `${store.currentProxyIndex + 1}/${
@@ -301,7 +301,7 @@ async function lookup(browser: Browser, store: Store) {
   /* eslint-enable no-await-in-loop */
 }
 
-async function lookupIem(
+async function lookupItem(
   browser: Browser,
   store: Store,
   page: Page,
@@ -492,7 +492,11 @@ async function isItemInStock(
   }
 
   if (store.labels.maxPrice) {
-    const maxPrice = config.store.maxPrice.series[link.series];
+    let maxPrice = config.store.maxPrice.default;
+    if (link.series in config.store.maxPrice.series) {
+      // @ts-ignore
+      maxPrice = config.store.maxPrice.series[link.series];
+    }
 
     link.price = await getPrice(page, store.labels.maxPrice, baseOptions);
 
@@ -558,9 +562,33 @@ async function runCaptchaDeterrent(browser: Browser, store: Store, page: Page) {
   }
 }
 
+function isItTimeToIdle(datetime?: Date): boolean {
+  datetime = datetime || new Date();
+  const waitMinuteRanges = [
+    [4, 14],
+    [19, 29],
+    [34, 44],
+    [49, 59]
+  ];
+  const minutes = datetime.getMinutes();
+  for (let r of waitMinuteRanges) {
+    if (minutes >= r[0] && minutes < r[1]) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export async function tryLookupAndLoop(browser: Browser, store: Store) {
   if (!browser.isConnected()) {
     logger.debug(`[${store.name}] Ending this loop as browser is disposed...`);
+    return;
+  }
+
+  if (config.browser.timeStrategy && isItTimeToIdle()) {
+    const sleepTime = getSleepTime(store);
+    logger.info(`[${store.name}] Time strategy idle, next try in ${sleepTime} ms`);
+    setTimeout(tryLookupAndLoop, sleepTime, browser, store);
     return;
   }
 

@@ -2,7 +2,6 @@ import * as Process from 'process';
 import {config} from './config'; // Needs to be loaded first
 import {startAPIServer, stopAPIServer} from './web';
 import {Browser, launch} from 'puppeteer';
-import {getSleepTime} from './util';
 import {logger} from './logger';
 import {storeList} from './store/model';
 import {tryLookupAndLoop} from './store';
@@ -30,16 +29,38 @@ async function restartMain() {
 async function main() {
   browser = await launchBrowser();
 
-  for (const store of storeList.values()) {
-    logger.debug('store links', {meta: {links: store.links}});
-    if (store.setupAction !== undefined) {
-      store.setupAction(browser);
-    }
+  let start = getNextMinute();
+  logger.info('ℹ search will begin at ' + start.toLocaleTimeString());
 
-    setTimeout(tryLookupAndLoop, getSleepTime(store), browser, store);
+  if (await waitUntilTime(start)) {
+    for (const store of storeList.values()) {
+      // logger.debug('store links', {meta: {links: store.links}});
+      if (store.setupAction !== undefined) {
+        store.setupAction(browser);
+      }
+
+      tryLookupAndLoop(browser, store);
+    }
   }
 
   await startAPIServer();
+}
+
+const getNextMinute = (date?: Date) => {
+  date = date || new Date();
+  let next = date.getMinutes() + 1;
+  next = (next > 59 ? 0 : next);
+  date.setMinutes(next, 0, 0);
+  return date;
+}
+
+async function waitUntilTime(date: Date) {
+  let now = new Date();
+  while(now < date) {
+    await sleep(200);
+    now = new Date();
+  }
+  return Promise.resolve(true);
 }
 
 async function stop() {

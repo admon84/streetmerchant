@@ -177,6 +177,7 @@ const browser = {
   isIncognito: envOrBoolean(process.env.INCOGNITO, false),
   isTrusted: envOrBoolean(process.env.BROWSER_TRUSTED, false),
   lowBandwidth: envOrBoolean(process.env.LOW_BANDWIDTH, false),
+  timeStrategy: envOrBoolean(process.env.USE_TIME_STRATEGY, false),
   maxBackoff: envOrNumberMax(
     process.env.PAGE_BACKOFF_MIN,
     process.env.PAGE_BACKOFF_MAX,
@@ -230,29 +231,8 @@ const notifications = {
   discord: {
     notifyGroup: envOrArray(process.env.DISCORD_NOTIFY_GROUP),
     notifyGroupSeries: {
-      3060: envOrArray(process.env.DISCORD_NOTIFY_GROUP_3060),
-      '3060ti': envOrArray(process.env.DISCORD_NOTIFY_GROUP_3060TI),
-      3070: envOrArray(process.env.DISCORD_NOTIFY_GROUP_3070),
-      '3070ti': envOrArray(process.env.DISCORD_NOTIFY_GROUP_3070TI),
-      3080: envOrArray(process.env.DISCORD_NOTIFY_GROUP_3080),
-      '3080ti': envOrArray(process.env.DISCORD_NOTIFY_GROUP_3080TI),
-      3090: envOrArray(process.env.DISCORD_NOTIFY_GROUP_3090),
-      'captcha-deterrent': [],
-      darkhero: envOrArray(process.env.DISCORD_NOTIFY_GROUP_DARKHERO),
-      rx6700xt: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RX6700XT),
-      rx6800: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RX6800),
-      rx6800xt: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RX6800XT),
-      rx6900xt: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RX6900XT),
-      ryzen5600: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RYZEN5600),
-      ryzen5800: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RYZEN5800),
-      ryzen5900: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RYZEN5900),
-      ryzen5950: envOrArray(process.env.DISCORD_NOTIFY_GROUP_RYZEN5950),
-      sf: envOrArray(process.env.DISCORD_NOTIFY_GROUP_CORSAIR_SF),
-      sonyps5c: envOrArray(process.env.DISCORD_NOTIFY_GROUP_SONYPS5C),
-      sonyps5de: envOrArray(process.env.DISCORD_NOTIFY_GROUP_SONYPS5DE),
+      firebird: envOrArray(process.env.DISCORD_NOTIFY_GROUP_FIREBIRD),
       'test:series': envOrArray(process.env.DISCORD_NOTIFY_GROUP_TEST),
-      xboxss: envOrArray(process.env.DISCORD_NOTIFY_GROUP_XBOXSS),
-      xboxsx: envOrArray(process.env.DISCORD_NOTIFY_GROUP_XBOXSX),
     },
     webhooks: envOrArray(process.env.DISCORD_WEB_HOOK),
   },
@@ -393,41 +373,13 @@ const proxy = {
   protocol: envOrString(process.env.PROXY_PROTOCOL, 'http'),
 };
 
-// Check for deprecated configuration values
-if (process.env.MAX_PRICE) {
-  console.warn(
-    'ℹ MAX_PRICE is deprecated, please use MAX_PRICE_SERIES_{{series}}'
-  );
-}
-
 const store = {
   autoAddToCart: envOrBoolean(process.env.AUTO_ADD_TO_CART, true),
   country: envOrString(process.env.COUNTRY, 'usa'),
   maxPrice: {
+    default: envOrNumber(process.env.MAX_PRICE),
     series: {
-      3060: envOrNumber(process.env.MAX_PRICE_SERIES_3060),
-      '3060ti': envOrNumber(process.env.MAX_PRICE_SERIES_3060TI),
-      3070: envOrNumber(process.env.MAX_PRICE_SERIES_3070),
-      '3070ti': envOrNumber(process.env.MAX_PRICE_SERIES_3070TI),
-      3080: envOrNumber(process.env.MAX_PRICE_SERIES_3080),
-      '3080ti': envOrNumber(process.env.MAX_PRICE_SERIES_3080TI),
-      3090: envOrNumber(process.env.MAX_PRICE_SERIES_3090),
-      'captcha-deterrent': 0,
-      darkhero: envOrNumber(process.env.MAX_PRICE_SERIES_DARKHERO),
-      rx6700xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6700XT),
-      rx6800: envOrNumber(process.env.MAX_PRICE_SERIES_RX6800),
-      rx6800xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6800XT),
-      rx6900xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6900XT),
-      ryzen5600: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5600),
-      ryzen5800: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5800),
-      ryzen5900: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5900),
-      ryzen5950: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5950),
-      sf: envOrNumber(process.env.MAX_PRICE_SERIES_CORSAIR_SF),
-      sonyps5c: envOrNumber(process.env.MAX_PRICE_SERIES_SONYPS5C),
-      sonyps5de: envOrNumber(process.env.MAX_PRICE_SERIES_SONYPS5DE),
-      'test:series': envOrNumber(process.env.MAX_PRICE_SERIES_TEST),
-      xboxss: envOrNumber(process.env.MAX_PRICE_SERIES_XBOXSS),
-      xboxsx: envOrNumber(process.env.MAX_PRICE_SERIES_XBOXSX),
+      firebird: envOrNumber(process.env.MAX_PRICE_SERIES_FIREBIRD),
     },
   },
   microCenterLocation: envOrArray(process.env.MICROCENTER_LOCATION, ['web']),
@@ -439,29 +391,8 @@ const store = {
       series: envOrString(series),
     };
   }),
-  showOnlySeries: envOrArray(process.env.SHOW_ONLY_SERIES, [
-    '3060',
-    '3060ti',
-    '3070',
-    '3070ti',
-    '3080',
-    '3080ti',
-    '3090',
-    'rx6700xt',
-    'rx6800',
-    'rx6800xt',
-    'rx6900xt',
-    'ryzen5600',
-    'ryzen5800',
-    'ryzen5900',
-    'ryzen5950',
-    'sf',
-    'sonyps5c',
-    'sonyps5de',
-    'xboxss',
-    'xboxsx',
-  ]),
-  stores: envOrArray(process.env.STORES, ['amazon', 'bestbuy']).map(entry => {
+  showOnlySeries: envOrArray(process.env.SHOW_ONLY_SERIES, []),
+  stores: envOrArray(process.env.STORES, ['discmania', 'innova-pro-shop']).map(entry => {
     const [name, minPageSleep, maxPageSleep] = entry.match(/[^:]+/g) ?? [];
 
     let proxyList = loadProxyList(name);
