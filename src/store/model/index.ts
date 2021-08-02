@@ -1,13 +1,18 @@
 import {config, defaultStoreData} from '../../config';
+import {Discraft} from './discraft';
 import {Discmania} from './discmania';
+import {Infinite} from './infinite';
 import {InnovaProShop} from './innova-pro-shop';
-import {Store} from './store';
+import {Sabattus} from './sabattus';
 import {logger} from '../../logger';
 import chalk from 'chalk';
 
 export const storeList = new Map([
+  [Discraft.name, Discraft],
   [Discmania.name, Discmania],
+  [Infinite.name, Infinite],
   [InnovaProShop.name, InnovaProShop],
+  [Sabattus.name, Sabattus],
 ]);
 
 const brands = new Set();
@@ -91,17 +96,6 @@ function darkenEmptyStores(): {names: string[]; anyExcluded: boolean} {
   return {names, anyExcluded};
 }
 
-function warnIfStoreDeprecated(store: Store) {
-  switch (store.name) {
-    case 'evga':
-      logger.warn(
-        `${store.name} is deprecated since they only support queuing`
-      );
-      break;
-    default:
-  }
-}
-
 export function updateStores() {
   stores.clear();
 
@@ -109,7 +103,6 @@ export function updateStores() {
     const store = storeList.get(storeData.name);
 
     if (store) {
-      warnIfStoreDeprecated(store);
       stores.set(storeData.name, store);
       store.minPageSleep = storeData.minPageSleep;
       store.maxPageSleep = storeData.maxPageSleep;

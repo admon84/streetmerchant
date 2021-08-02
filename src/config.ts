@@ -392,7 +392,7 @@ const store = {
     };
   }),
   showOnlySeries: envOrArray(process.env.SHOW_ONLY_SERIES, []),
-  stores: envOrArray(process.env.STORES, ['discmania', 'innova-pro-shop']).map(entry => {
+  stores: envOrArray(process.env.STORES, ['innova-pro-shop', 'discmania', 'discraft', 'infinite', 'sabattus']).map(entry => {
     const [name, minPageSleep, maxPageSleep] = entry.match(/[^:]+/g) ?? [];
 
     let proxyList = loadProxyList(name);

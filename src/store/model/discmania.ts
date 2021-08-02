@@ -17,17 +17,23 @@ export const Discmania: Store = {
   },
   links: [
     // {
-    //   brand: 'discmania',
+    //   brand: 'discmania originals',
     //   model: 'p2',
     //   series: 'd-line',
-    //   url: 'https://www.discmania.net/collections/p2/products/d-line-p2-1',
+    //   url: 'https://europe.discmania.net/collections/p2/products/d-line-p2',
     // },
     {
       brand: 'discmania',
-      model: 'p2',
-      series: 'd-line',
-      url: 'https://europe.discmania.net/collections/p2/products/d-line-p2',
+      model: 'dd3',
+      series: 's-line',
+      url: 'https://www.discmania.net/products/s-line-dd3',
     },
+    {
+      brand: 'discmania',
+      model: 'cd2',
+      series: 's-line',
+      url: 'https://www.discmania.net/products/s-line-cd2',
+    }
   ],
   name: 'discmania',
   waitUntil: 'domcontentloaded',

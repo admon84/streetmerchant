@@ -57,7 +57,7 @@ const getNextMinute = (date?: Date) => {
 async function waitUntilTime(date: Date) {
   let now = new Date();
   while(now < date) {
-    await sleep(200);
+    await sleep(500);
     now = new Date();
   }
   return Promise.resolve(true);

@@ -6,7 +6,39 @@ import {disableBlockerInPage} from './adblocker';
 import {logger} from './logger';
 import topUserAgents from 'top-user-agents';
 
+function isItTimeToIdle(datetime?: Date): boolean {
+  datetime = datetime || new Date();
+  const waitMinuteRanges = [
+    [4, 14],
+    [19, 29],
+    [34, 44],
+    [49, 59]
+  ];
+  const minutes = datetime.getMinutes();
+  for (let r of waitMinuteRanges) {
+    if (minutes >= r[0] && minutes < r[1]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function getSecondsUntilNextHalfMinute() {
+  return 30 - (new Date().getSeconds() % 30);
+}
+
 export function getSleepTime(store: Store) {
+  if (store.name === 'innova-pro-shop') {
+    const now = new Date();
+    const addSeconds = getSecondsUntilNextHalfMinute();
+
+    let nextDate = new Date();
+    nextDate.setSeconds(nextDate.getSeconds() + addSeconds, 0);
+    let diff = (nextDate.getTime() - now.getTime());
+
+    return diff;
+  }
+
   const minSleep = store.minPageSleep as number;
   return minSleep + Math.random() * ((store.maxPageSleep as number) - minSleep);
 }

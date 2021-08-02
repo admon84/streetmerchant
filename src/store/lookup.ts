@@ -587,7 +587,7 @@ export async function tryLookupAndLoop(browser: Browser, store: Store) {
 
   if (config.browser.timeStrategy && isItTimeToIdle()) {
     const sleepTime = getSleepTime(store);
-    logger.info(`[${store.name}] Time strategy idle, next try in ${sleepTime} ms`);
+    logger.debug(`[${store.name}] Time strategy idle, next try in ${sleepTime} ms`);
     setTimeout(tryLookupAndLoop, sleepTime, browser, store);
     return;
   }
