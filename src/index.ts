@@ -31,7 +31,7 @@ async function main() {
   browser = await launchBrowser();
 
   for (const store of storeList.values()) {
-    logger.debug('store links', {meta: {links: store.links}});
+    // logger.debug('store links', {meta: {links: store.links}});
     if (store.setupAction !== undefined) {
       store.setupAction(browser);
     }
@@ -102,21 +102,58 @@ export async function launchBrowser(): Promise<Browser> {
     );
   }
 
+  // Additional arguments to avoid bot detection
+  args.push('--disable-blink-features=AutomationControlled');
+  args.push('--disable-features=VizDisplayCompositor');
+  args.push('--disable-web-security');
+  args.push('--disable-features=TranslateUI');
+  args.push('--disable-ipc-flooding-protection');
+
   if (args.length > 0) {
     logger.info('ℹ puppeteer config: ', args);
   }
 
   await stop();
   const browser = await Puppeteer.launch({
+    executablePath: '/opt/homebrew/bin/chromium',
     args,
     defaultViewport: {
       height: config.page.height,
       width: config.page.width,
     },
     headless: config.browser.isHeadless,
+    ignoreDefaultArgs: ['--enable-automation'],
   });
 
   config.browser.userAgent = await browser.userAgent();
+
+  // Remove webdriver property and other automation indicators
+  const pages = await browser.pages();
+  for (const page of pages) {
+    await page.evaluateOnNewDocument(() => {
+      Object.defineProperty(navigator, 'webdriver', {
+        get: () => undefined,
+      });
+
+      // Mock plugins and languages to appear more human
+      Object.defineProperty(navigator, 'plugins', {
+        get: () => [1, 2, 3, 4, 5],
+      });
+
+      Object.defineProperty(navigator, 'languages', {
+        get: () => ['en-US', 'en'],
+      });
+
+      // Mock permissions
+      const originalQuery = window.navigator.permissions.query;
+      window.navigator.permissions.query = parameters =>
+        parameters.name === 'notifications'
+          ? Promise.resolve({
+              state: Notification.permission,
+            } as PermissionStatus)
+          : originalQuery(parameters);
+    });
+  }
 
   return browser;
 }

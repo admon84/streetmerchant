@@ -171,11 +171,13 @@ import {Wipoid} from './wipoid';
 import {Xbox} from './xbox';
 import {XtremMedia} from './xtremmedia';
 import {Zotac} from './zotac';
+import {PokemonCenter} from './pokemon-center';
 
 import chalk from 'chalk';
 import {logger} from '../../logger';
 
 export const storeList = new Map([
+  [PokemonCenter.name, PokemonCenter],
   [AComPC.name, AComPC],
   [Adorama.name, Adorama],
   [Akinformatica.name, Akinformatica],

@@ -40,7 +40,8 @@ export type Brand =
   | 'sparkle'
   | 'ubiquiti'
   | 'xfx'
-  | 'zotac';
+  | 'zotac'
+  | 'pokemon';
 
 export type Series =
   | 'test:series'
@@ -339,14 +340,14 @@ export type Model =
   | 'xtreme';
 
 export type Link = {
-  brand: Brand;
+  brand: string;
   cartUrl?: string;
   itemNumber?: string;
   labels?: Labels;
-  model: Model;
+  model: string;
   openCartAction?: (browser: Browser) => Promise<string>;
   price?: number | null;
-  series: Series;
+  series: string;
   screenshot?: string;
   url: string;
 };
