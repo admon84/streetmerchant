@@ -1,7 +1,6 @@
 import {Store} from '../store';
 
 export const PokemonCenter: Store = {
-  backoffStatusCodes: [403, 429, 503],
   captchaDeterrent: {
     hardLinks: [
       'https://www.pokemoncenter.com/',
@@ -64,11 +63,10 @@ export const PokemonCenter: Store = {
   ],
   name: 'pokemon-center',
   country: 'US',
+  backoffStatusCodes: [403, 429, 503],
   successStatusCodes: [
     [200, 299],
     [400, 404],
   ],
   waitUntil: 'networkidle0',
-  minPageSleep: 30000,
-  maxPageSleep: 45000,
 };

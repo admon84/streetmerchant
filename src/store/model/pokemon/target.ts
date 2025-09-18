@@ -70,7 +70,10 @@ export const Target: Store = {
   ],
   name: 'target',
   country: 'US',
+  backoffStatusCodes: [403, 429, 503],
+  successStatusCodes: [
+    [200, 299],
+    [400, 404],
+  ],
   waitUntil: 'networkidle0',
-  minPageSleep: 30000,
-  maxPageSleep: 45000,
 };
