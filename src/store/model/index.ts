@@ -1,353 +1,359 @@
 import {config, defaultStoreData} from '../../config';
 
-import {AComPC} from './acompc';
-import {Adorama} from './adorama';
-import {Akinformatica} from './akinformatica';
-import {Allneeds} from './allneeds';
-import {AlternateDe} from './alternate-de';
-import {AlternateFr} from './alternate-fr';
-import {AlternateNL} from './alternate-nl';
-import {Amazon} from './amazon';
-import {AmazonCa} from './amazon-ca';
-import {AmazonDe} from './amazon-de';
-import {AmazonDeWarehouse} from './amazon-de-warehouse';
-import {AmazonEs} from './amazon-es';
-import {AmazonFr} from './amazon-fr';
-import {AmazonIt} from './amazon-it';
-import {AmazonNl} from './amazon-nl';
-import {AmazonSg} from './amazon-sg';
-import {AmazonUk} from './amazon-uk';
-import {Amd} from './amd';
-import {AmdAt} from './amd-at';
-import {AmdBe} from './amd-be';
-import {AmdCa} from './amd-ca';
-import {AmdDe} from './amd-de';
-import {AmdIt} from './amd-it';
-import {AmdNl} from './amd-nl';
-import {AmdUk} from './amd-uk';
-import {AntOnline} from './antonline';
-import {AO} from './ao';
-import {Argos} from './argos';
-import {ArgosIE} from './argos-ie';
-import {Aria} from './aria';
-import {Arlt} from './arlt';
-import {Asus} from './asus';
-import {AsusDe} from './asus-de';
-import {AsusEs} from './asus-es';
-import {Awd} from './awd';
-import {Azerty} from './azerty';
-import {BAndH} from './bandh';
-import {BestBuy} from './bestbuy';
-import {BestBuyCa} from './bestbuy-ca';
-import {Box} from './box';
-import {Bpctech} from './bpctech';
-import {BpmPower} from './bpmpower';
-import {BT} from './bt';
-import {CanadaComputers} from './canadacomputers';
-import {Caseking} from './caseking';
-import {Ccl} from './ccl';
-import {Centrecom} from './centrecom';
-import {Comet} from './comet';
-import {ComputerAlliance} from './computeralliance';
-import {Computeruniverse} from './computeruniverse';
-import {Coolblue} from './coolblue';
-import {Coolmod} from './coolmod';
-import {Corsair} from './corsair';
-import {CorsairUK} from './corsair-uk';
-import {Cpl} from './cpl';
-import {Currys} from './currys';
-import {Cyberport} from './cyberport';
-import {CyberportAt} from './cyberport-at';
-import {Dcomp} from './dcomp';
-import {Drako} from './drako';
-import {DustinHomeNO} from './dustinhome-no';
-import {Ebuyer} from './ebuyer';
-import {Elcorteingles} from './elcorteingles';
-import {Eletronicamente} from './eletronicamente';
-import {Elkjop} from './elkjop';
-import {Eprice} from './eprice';
-import {Equippr} from './equippr';
-import {Euronics} from './euronics';
-import {EuronicsDE} from './euronics-de';
-import {Evatech} from './evatech';
-import {Evga} from './evga';
-import {EvgaEu} from './evga-eu';
-import {Expert} from './expert';
-import {Futurex} from './futurex';
-import {Galaxus} from './galaxus';
-import {Game} from './game';
-import {GameES} from './game-es';
-import {Gamestop} from './gamestop';
-import {GamestopCA} from './gamestop-ca';
-import {GamestopDE} from './gamestop-de';
-import {GamestopIE} from './gamestop-ie';
-import {GamestopIT} from './gamestop-it';
-import {Globaldata} from './globaldata';
-import {HardwarePlanet} from './hardware-planet';
-import {HarrisTechnology} from './harristechnology';
-import {HarveyNormanIE} from './harveynorman-ie';
-import {Igamecomputer} from './igame';
-import {JohnLewis} from './johnlewis';
-import {Kabum} from './kabum';
-import {KomplettNO} from './komplett-no';
-import {Ldlc} from './ldlc';
-import {LdlcEs} from './ldlc-es';
-import {LDLCItaly} from './ldlc-italy';
-import {LandmarkComputers} from './lmc';
-import {Materiel} from './materiel';
-import {Mediamarkt} from './mediamarkt';
-import {MediamarktAt} from './mediamarkt-at';
-import {Medimax} from './medimax';
-import {Megekko} from './megekko';
-import {MemoryExpress} from './memoryexpress';
-import {MicroCenter} from './microcenter';
-import {Microsoft} from './microsoft';
-import {MicrosoftCA} from './microsoft-ca';
-import {MightyApe} from './mightyape';
-import {Mindfactory} from './mindfactory';
-import {MSI} from './msi';
-import {Msy} from './msy';
-import {Multicom} from './multicom';
-import {Mwave} from './mwave';
-import {NeoByte} from './neobyte';
-import {NetonnetNO} from './netonnet-no';
-import {Newegg} from './newegg';
-import {NeweggCa} from './newegg-ca';
-import {NeweggSg} from './newegg-sg';
-import {NoelLeeming} from './noelleeming';
-import {Notebooksbilliger} from './notebooksbilliger';
-import {Novatech} from './novatech';
-import {NovoAtalho} from './novoatalho';
-import {NvidiaDE} from './nvidia-de';
-import {NvidiaES} from './nvidia-es';
-import {NvidiaFR} from './nvidia-fr';
-import {NvidiaGB} from './nvidia-gb';
-import {OfficeDepot} from './officedepot';
-import {Ollo} from './ollo';
-import {Opirata} from './opirata';
-import {Otto} from './otto';
-import {Overclockers} from './overclockers';
-import {PBTech} from './pbtech';
-import {PCByte} from './pcbyte';
-import {Pccg} from './pccg';
-import {PCComponentes} from './pccomponentes';
-import {PCDiga} from './pcdiga';
-import {PCKing} from './pcking';
-import {PlayStation} from './playstation';
-import {Pny} from './pny';
-import {PowerNO} from './power-no';
-import {ProshopDE} from './proshop-de';
-import {ProshopDK} from './proshop-dk';
-import {ProshopNO} from './proshop-no';
-import {Rosman} from './rosman';
-import {RosmanMelb} from './rosman-melb';
-import {Saturn} from './saturn';
-import {SaveOnIt} from './saveonit';
-import {Scan} from './scan';
-import {Scorptec} from './scorptec';
-import {ShopTo} from './shopto';
-import {Siabyte} from './siabyte';
-import {SmythsToys} from './smythstoys';
-import {SmythsToysIE} from './smythstoys-ie';
-import {Spielegrotte} from './spielegrotte';
+// import {AComPC} from './gpu/acompc';
+// import {Adorama} from './gpu/adorama';
+// import {Akinformatica} from './gpu/akinformatica';
+// import {Allneeds} from './gpu/allneeds';
+// import {AlternateDe} from './gpu/alternate-de';
+// import {AlternateFr} from './gpu/alternate-fr';
+// import {AlternateNL} from './gpu/alternate-nl';
+// import {Amazon} from './gpu/amazon';
+// import {AmazonCa} from './gpu/amazon-ca';
+// import {AmazonDe} from './gpu/amazon-de';
+// import {AmazonDeWarehouse} from './gpu/amazon-de-warehouse';
+// import {AmazonEs} from './gpu/amazon-es';
+// import {AmazonFr} from './gpu/amazon-fr';
+// import {AmazonIt} from './gpu/amazon-it';
+// import {AmazonNl} from './gpu/amazon-nl';
+// import {AmazonSg} from './gpu/amazon-sg';
+// import {AmazonUk} from './gpu/amazon-uk';
+// import {Amd} from './gpu/amd';
+// import {AmdAt} from './gpu/amd-at';
+// import {AmdBe} from './gpu/amd-be';
+// import {AmdCa} from './gpu/amd-ca';
+// import {AmdDe} from './gpu/amd-de';
+// import {AmdIt} from './gpu/amd-it';
+// import {AmdNl} from './gpu/amd-nl';
+// import {AmdUk} from './gpu/amd-uk';
+// import {AntOnline} from './gpu/antonline';
+// import {AO} from './gpu/ao';
+// import {Argos} from './gpu/argos';
+// import {ArgosIE} from './gpu/argos-ie';
+// import {Aria} from './gpu/aria';
+// import {Arlt} from './gpu/arlt';
+// import {Asus} from './gpu/asus';
+// import {AsusDe} from './gpu/asus-de';
+// import {AsusEs} from './gpu/asus-es';
+// import {Awd} from './gpu/awd';
+// import {Azerty} from './gpu/azerty';
+// import {BAndH} from './gpu/bandh';
+// import {BestBuy} from './gpu/bestbuy';
+// import {BestBuyCa} from './gpu/bestbuy-ca';
+// import {Box} from './gpu/box';
+// import {Bpctech} from './gpu/bpctech';
+// import {BpmPower} from './gpu/bpmpower';
+// import {BT} from './gpu/bt';
+// import {CanadaComputers} from './gpu/canadacomputers';
+// import {Caseking} from './gpu/caseking';
+// import {Ccl} from './gpu/ccl';
+// import {Centrecom} from './gpu/centrecom';
+// import {Comet} from './gpu/comet';
+// import {ComputerAlliance} from './gpu/computeralliance';
+// import {Computeruniverse} from './gpu/computeruniverse';
+// import {Coolblue} from './gpu/coolblue';
+// import {Coolmod} from './gpu/coolmod';
+// import {Corsair} from './gpu/corsair';
+// import {CorsairUK} from './gpu/corsair-uk';
+// import {Cpl} from './gpu/cpl';
+// import {Currys} from './gpu/currys';
+// import {Cyberport} from './gpu/cyberport';
+// import {CyberportAt} from './gpu/cyberport-at';
+// import {Dcomp} from './gpu/dcomp';
+// import {Drako} from './gpu/drako';
+// import {DustinHomeNO} from './gpu/dustinhome-no';
+// import {Ebuyer} from './gpu/ebuyer';
+// import {Elcorteingles} from './gpu/elcorteingles';
+// import {Eletronicamente} from './gpu/eletronicamente';
+// import {Elkjop} from './gpu/elkjop';
+// import {Eprice} from './gpu/eprice';
+// import {Equippr} from './gpu/equippr';
+// import {Euronics} from './gpu/euronics';
+// import {EuronicsDE} from './gpu/euronics-de';
+// import {Evatech} from './gpu/evatech';
+// import {Evga} from './gpu/evga';
+// import {EvgaEu} from './gpu/evga-eu';
+// import {Expert} from './gpu/expert';
+// import {Futurex} from './gpu/futurex';
+// import {Galaxus} from './gpu/galaxus';
+// import {Game} from './gpu/game';
+// import {GameES} from './gpu/game-es';
+// import {Gamestop} from './gpu/gamestop';
+// import {GamestopCA} from './gpu/gamestop-ca';
+// import {GamestopDE} from './gpu/gamestop-de';
+// import {GamestopIE} from './gpu/gamestop-ie';
+// import {GamestopIT} from './gpu/gamestop-it';
+// import {Globaldata} from './gpu/globaldata';
+// import {HardwarePlanet} from './gpu/hardware-planet';
+// import {HarrisTechnology} from './gpu/harristechnology';
+// import {HarveyNormanIE} from './gpu/harveynorman-ie';
+// import {Igamecomputer} from './gpu/igame';
+// import {JohnLewis} from './gpu/johnlewis';
+// import {Kabum} from './gpu/kabum';
+// import {KomplettNO} from './gpu/komplett-no';
+// import {Ldlc} from './gpu/ldlc';
+// import {LdlcEs} from './gpu/ldlc-es';
+// import {LDLCItaly} from './gpu/ldlc-italy';
+// import {LandmarkComputers} from './gpu/lmc';
+// import {Materiel} from './gpu/materiel';
+// import {Mediamarkt} from './gpu/mediamarkt';
+// import {MediamarktAt} from './gpu/mediamarkt-at';
+// import {Medimax} from './gpu/medimax';
+// import {Megekko} from './gpu/megekko';
+// import {MemoryExpress} from './gpu/memoryexpress';
+// import {MicroCenter} from './gpu/microcenter';
+// import {Microsoft} from './gpu/microsoft';
+// import {MicrosoftCA} from './gpu/microsoft-ca';
+// import {MightyApe} from './gpu/mightyape';
+// import {Mindfactory} from './gpu/mindfactory';
+// import {MSI} from './gpu/msi';
+// import {Msy} from './gpu/msy';
+// import {Multicom} from './gpu/multicom';
+// import {Mwave} from './gpu/mwave';
+// import {NeoByte} from './gpu/neobyte';
+// import {NetonnetNO} from './gpu/netonnet-no';
+// import {Newegg} from './gpu/newegg';
+// import {NeweggCa} from './gpu/newegg-ca';
+// import {NeweggSg} from './gpu/newegg-sg';
+// import {NoelLeeming} from './gpu/noelleeming';
+// import {Notebooksbilliger} from './gpu/notebooksbilliger';
+// import {Novatech} from './gpu/novatech';
+// import {NovoAtalho} from './gpu/novoatalho';
+// import {NvidiaDE} from './gpu/nvidia-de';
+// import {NvidiaES} from './gpu/nvidia-es';
+// import {NvidiaFR} from './gpu/nvidia-fr';
+// import {NvidiaGB} from './gpu/nvidia-gb';
+// import {OfficeDepot} from './gpu/officedepot';
+// import {Ollo} from './gpu/ollo';
+// import {Opirata} from './gpu/opirata';
+// import {Otto} from './gpu/otto';
+// import {Overclockers} from './gpu/overclockers';
+// import {PBTech} from './gpu/pbtech';
+// import {PCByte} from './gpu/pcbyte';
+// import {Pccg} from './gpu/pccg';
+// import {PCComponentes} from './gpu/pccomponentes';
+// import {PCDiga} from './gpu/pcdiga';
+// import {PCKing} from './gpu/pcking';
+// import {PlayStation} from './gpu/playstation';
+// import {Pny} from './gpu/pny';
+// import {PowerNO} from './gpu/power-no';
+// import {ProshopDE} from './gpu/proshop-de';
+// import {ProshopDK} from './gpu/proshop-dk';
+// import {ProshopNO} from './gpu/proshop-no';
+// import {Rosman} from './gpu/rosman';
+// import {RosmanMelb} from './gpu/rosman-melb';
+// import {Saturn} from './gpu/saturn';
+// import {SaveOnIt} from './gpu/saveonit';
+// import {Scan} from './gpu/scan';
+// import {Scorptec} from './gpu/scorptec';
+// import {ShopTo} from './gpu/shopto';
+// import {Siabyte} from './gpu/siabyte';
+// import {SmythsToys} from './gpu/smythstoys';
+// import {SmythsToysIE} from './gpu/smythstoys-ie';
+// import {Spielegrotte} from './gpu/spielegrotte';
+// import {StormComputers} from './gpu/storm';
+// import {Target} from './gpu/target';
+// import {TescoIE} from './gpu/tesco-ie';
+// import {TheWarehouse} from './gpu/thewarehouse';
+// import {TopAchat} from './gpu/topachat';
+// import {ToysRUs} from './gpu/toysrus';
+// import {Ubiquiti} from './gpu/ubiquiti';
+// import {Umart} from './gpu/umart';
+// import {Unieuro} from './gpu/unieuro';
+// import {UltimaInformatica} from './gpu/utlimainformatica';
+// import {Very} from './gpu/very';
+// import {VsGamers} from './gpu/vsgamers';
+// import {Vuugo} from './gpu/vuugo';
+// import {Walmart} from './gpu/walmart';
+// import {WalmartCa} from './gpu/walmart-ca';
+// import {WellsTechnology} from './gpu/wellstechnology';
+// import {Wipoid} from './gpu/wipoid';
+// import {Xbox} from './gpu/xbox';
+// import {XtremMedia} from './gpu/xtremmedia';
+// import {Zotac} from './gpu/zotac';
+
 import {Store} from './store';
-import {StormComputers} from './storm';
-import {Target} from './target';
-import {TescoIE} from './tesco-ie';
-import {TheWarehouse} from './thewarehouse';
-import {TopAchat} from './topachat';
-import {ToysRUs} from './toysrus';
-import {Ubiquiti} from './ubiquiti';
-import {Umart} from './umart';
-import {Unieuro} from './unieuro';
-import {UltimaInformatica} from './utlimainformatica';
-import {Very} from './very';
-import {VsGamers} from './vsgamers';
-import {Vuugo} from './vuugo';
-import {Walmart} from './walmart';
-import {WalmartCa} from './walmart-ca';
-import {WellsTechnology} from './wellstechnology';
-import {Wipoid} from './wipoid';
-import {Xbox} from './xbox';
-import {XtremMedia} from './xtremmedia';
-import {Zotac} from './zotac';
-import {PokemonCenter} from './pokemon-center';
+import {PokemonCenter} from './pokemon/pokemon-center';
+import {Target} from './pokemon/target';
+import {Walmart} from './pokemon/walmart';
 
 import chalk from 'chalk';
 import {logger} from '../../logger';
 
 export const storeList = new Map([
   [PokemonCenter.name, PokemonCenter],
-  [AComPC.name, AComPC],
-  [Adorama.name, Adorama],
-  [Akinformatica.name, Akinformatica],
-  [Allneeds.name, Allneeds],
-  [AlternateDe.name, AlternateDe],
-  [AlternateFr.name, AlternateFr],
-  [AlternateNL.name, AlternateNL],
-  [Amazon.name, Amazon],
-  [AmazonCa.name, AmazonCa],
-  [AmazonDe.name, AmazonDe],
-  [AmazonDeWarehouse.name, AmazonDeWarehouse],
-  [AmazonEs.name, AmazonEs],
-  [AmazonFr.name, AmazonFr],
-  [AmazonIt.name, AmazonIt],
-  [AmazonNl.name, AmazonNl],
-  [AmazonSg.name, AmazonSg],
-  [AmazonUk.name, AmazonUk],
-  [Amd.name, Amd],
-  [AmdAt.name, AmdAt],
-  [AmdBe.name, AmdBe],
-  [AmdCa.name, AmdCa],
-  [AmdDe.name, AmdDe],
-  [AmdIt.name, AmdIt],
-  [AmdNl.name, AmdNl],
-  [AmdUk.name, AmdUk],
-  [AntOnline.name, AntOnline],
-  [AO.name, AO],
-  [Argos.name, Argos],
-  [ArgosIE.name, Argos],
-  [Aria.name, Aria],
-  [Arlt.name, Arlt],
-  [Asus.name, Asus],
-  [AsusDe.name, AsusDe],
-  [AsusEs.name, AsusEs],
-  [Awd.name, Awd],
-  [Azerty.name, Azerty],
-  [BAndH.name, BAndH],
-  [BestBuy.name, BestBuy],
-  [BestBuyCa.name, BestBuyCa],
-  [Box.name, Box],
-  [Bpctech.name, Bpctech],
-  [BpmPower.name, BpmPower],
-  [BT.name, BT],
-  [CanadaComputers.name, CanadaComputers],
-  [Caseking.name, Caseking],
-  [Ccl.name, Ccl],
-  [Centrecom.name, Centrecom],
-  [Comet.name, Comet],
-  [ComputerAlliance.name, ComputerAlliance],
-  [Computeruniverse.name, Computeruniverse],
-  [Coolblue.name, Coolblue],
-  [Coolmod.name, Coolmod],
-  [Corsair.name, Corsair],
-  [CorsairUK.name, CorsairUK],
-  [Cpl.name, Cpl],
-  [Currys.name, Currys],
-  [Cyberport.name, Cyberport],
-  [CyberportAt.name, CyberportAt],
-  [Dcomp.name, Dcomp],
-  [Drako.name, Drako],
-  [DustinHomeNO.name, DustinHomeNO],
-  [Ebuyer.name, Ebuyer],
-  [Elcorteingles.name, Elcorteingles],
-  [Eletronicamente.name, Eletronicamente],
-  [Elkjop.name, Elkjop],
-  [Eprice.name, Eprice],
-  [Equippr.name, Equippr],
-  [Euronics.name, Euronics],
-  [EuronicsDE.name, EuronicsDE],
-  [Evatech.name, Evatech],
-  [Evga.name, Evga],
-  [EvgaEu.name, EvgaEu],
-  [Expert.name, Expert],
-  [Futurex.name, Futurex],
-  [Galaxus.name, Galaxus],
-  [Game.name, Game],
-  [GameES.name, GameES],
-  [Gamestop.name, Gamestop],
-  [GamestopCA.name, GamestopCA],
-  [GamestopDE.name, GamestopDE],
-  [GamestopIE.name, GamestopIE],
-  [GamestopIT.name, GamestopIT],
-  [Globaldata.name, Globaldata],
-  [HardwarePlanet.name, HardwarePlanet],
-  [HarrisTechnology.name, HarrisTechnology],
-  [HarveyNormanIE.name, HarveyNormanIE],
-  [Igamecomputer.name, Igamecomputer],
-  [JohnLewis.name, JohnLewis],
-  [Kabum.name, Kabum],
-  [KomplettNO.name, KomplettNO],
-  [LandmarkComputers.name, LandmarkComputers],
-  [Ldlc.name, Ldlc],
-  [LdlcEs.name, LdlcEs],
-  [LDLCItaly.name, LDLCItaly],
-  [Materiel.name, Materiel],
-  [Mediamarkt.name, Mediamarkt],
-  [MediamarktAt.name, MediamarktAt],
-  [Medimax.name, Medimax],
-  [Megekko.name, Megekko],
-  [MemoryExpress.name, MemoryExpress],
-  [MicroCenter.name, MicroCenter],
-  [Microsoft.name, Microsoft],
-  [MicrosoftCA.name, MicrosoftCA],
-  [MightyApe.name, MightyApe],
-  [Mindfactory.name, Mindfactory],
-  [MSI.name, MSI],
-  [Msy.name, Msy],
-  [Multicom.name, Multicom],
-  [Mwave.name, Mwave],
-  [NeoByte.name, NeoByte],
-  [NetonnetNO.name, NetonnetNO],
-  [Newegg.name, Newegg],
-  [NeweggCa.name, NeweggCa],
-  [NeweggSg.name, NeweggSg],
-  [NoelLeeming.name, NoelLeeming],
-  [Notebooksbilliger.name, Notebooksbilliger],
-  [Novatech.name, Novatech],
-  [NovoAtalho.name, NovoAtalho],
-  [NvidiaDE.name, NvidiaDE],
-  [NvidiaES.name, NvidiaES],
-  [NvidiaFR.name, NvidiaFR],
-  [NvidiaGB.name, NvidiaGB],
-  [OfficeDepot.name, OfficeDepot],
-  [Ollo.name, Ollo],
-  [Opirata.name, Opirata],
-  [Otto.name, Otto],
-  [Overclockers.name, Overclockers],
-  [PBTech.name, PBTech],
-  [PCByte.name, PCByte],
-  [Pccg.name, Pccg],
-  [PCComponentes.name, PCComponentes],
-  [PCDiga.name, PCDiga],
-  [PCKing.name, PCKing],
-  [PlayStation.name, PlayStation],
-  [Pny.name, Pny],
-  [PowerNO.name, PowerNO],
-  [ProshopDE.name, ProshopDE],
-  [ProshopDK.name, ProshopDK],
-  [ProshopNO.name, ProshopNO],
-  [Rosman.name, Rosman],
-  [RosmanMelb.name, RosmanMelb],
-  [Saturn.name, Saturn],
-  [SaveOnIt.name, SaveOnIt],
-  [Scan.name, Scan],
-  [Scorptec.name, Scorptec],
-  [ShopTo.name, ShopTo],
-  [Siabyte.name, Siabyte],
-  [SmythsToys.name, SmythsToys],
-  [SmythsToysIE.name, SmythsToysIE],
-  [Spielegrotte.name, Spielegrotte],
-  [StormComputers.name, StormComputers],
   [Target.name, Target],
-  [TescoIE.name, TescoIE],
-  [TheWarehouse.name, TheWarehouse],
-  [TopAchat.name, TopAchat],
-  [ToysRUs.name, ToysRUs],
-  [Ubiquiti.name, Ubiquiti],
-  [UltimaInformatica.name, UltimaInformatica],
-  [Umart.name, Umart],
-  [Unieuro.name, Unieuro],
-  [Very.name, Very],
-  [VsGamers.name, VsGamers],
-  [Vuugo.name, Vuugo],
   [Walmart.name, Walmart],
-  [WalmartCa.name, WalmartCa],
-  [WellsTechnology.name, WellsTechnology],
-  [Wipoid.name, Wipoid],
-  [Xbox.name, Xbox],
-  [XtremMedia.name, XtremMedia],
-  [Zotac.name, Zotac],
+
+  // [AComPC.name, AComPC],
+  // [Adorama.name, Adorama],
+  // [Akinformatica.name, Akinformatica],
+  // [Allneeds.name, Allneeds],
+  // [AlternateDe.name, AlternateDe],
+  // [AlternateFr.name, AlternateFr],
+  // [AlternateNL.name, AlternateNL],
+  // [Amazon.name, Amazon],
+  // [AmazonCa.name, AmazonCa],
+  // [AmazonDe.name, AmazonDe],
+  // [AmazonDeWarehouse.name, AmazonDeWarehouse],
+  // [AmazonEs.name, AmazonEs],
+  // [AmazonFr.name, AmazonFr],
+  // [AmazonIt.name, AmazonIt],
+  // [AmazonNl.name, AmazonNl],
+  // [AmazonSg.name, AmazonSg],
+  // [AmazonUk.name, AmazonUk],
+  // [Amd.name, Amd],
+  // [AmdAt.name, AmdAt],
+  // [AmdBe.name, AmdBe],
+  // [AmdCa.name, AmdCa],
+  // [AmdDe.name, AmdDe],
+  // [AmdIt.name, AmdIt],
+  // [AmdNl.name, AmdNl],
+  // [AmdUk.name, AmdUk],
+  // [AntOnline.name, AntOnline],
+  // [AO.name, AO],
+  // [Argos.name, Argos],
+  // [ArgosIE.name, Argos],
+  // [Aria.name, Aria],
+  // [Arlt.name, Arlt],
+  // [Asus.name, Asus],
+  // [AsusDe.name, AsusDe],
+  // [AsusEs.name, AsusEs],
+  // [Awd.name, Awd],
+  // [Azerty.name, Azerty],
+  // [BAndH.name, BAndH],
+  // [BestBuy.name, BestBuy],
+  // [BestBuyCa.name, BestBuyCa],
+  // [Box.name, Box],
+  // [Bpctech.name, Bpctech],
+  // [BpmPower.name, BpmPower],
+  // [BT.name, BT],
+  // [CanadaComputers.name, CanadaComputers],
+  // [Caseking.name, Caseking],
+  // [Ccl.name, Ccl],
+  // [Centrecom.name, Centrecom],
+  // [Comet.name, Comet],
+  // [ComputerAlliance.name, ComputerAlliance],
+  // [Computeruniverse.name, Computeruniverse],
+  // [Coolblue.name, Coolblue],
+  // [Coolmod.name, Coolmod],
+  // [Corsair.name, Corsair],
+  // [CorsairUK.name, CorsairUK],
+  // [Cpl.name, Cpl],
+  // [Currys.name, Currys],
+  // [Cyberport.name, Cyberport],
+  // [CyberportAt.name, CyberportAt],
+  // [Dcomp.name, Dcomp],
+  // [Drako.name, Drako],
+  // [DustinHomeNO.name, DustinHomeNO],
+  // [Ebuyer.name, Ebuyer],
+  // [Elcorteingles.name, Elcorteingles],
+  // [Eletronicamente.name, Eletronicamente],
+  // [Elkjop.name, Elkjop],
+  // [Eprice.name, Eprice],
+  // [Equippr.name, Equippr],
+  // [Euronics.name, Euronics],
+  // [EuronicsDE.name, EuronicsDE],
+  // [Evatech.name, Evatech],
+  // [Evga.name, Evga],
+  // [EvgaEu.name, EvgaEu],
+  // [Expert.name, Expert],
+  // [Futurex.name, Futurex],
+  // [Galaxus.name, Galaxus],
+  // [Game.name, Game],
+  // [GameES.name, GameES],
+  // [Gamestop.name, Gamestop],
+  // [GamestopCA.name, GamestopCA],
+  // [GamestopDE.name, GamestopDE],
+  // [GamestopIE.name, GamestopIE],
+  // [GamestopIT.name, GamestopIT],
+  // [Globaldata.name, Globaldata],
+  // [HardwarePlanet.name, HardwarePlanet],
+  // [HarrisTechnology.name, HarrisTechnology],
+  // [HarveyNormanIE.name, HarveyNormanIE],
+  // [Igamecomputer.name, Igamecomputer],
+  // [JohnLewis.name, JohnLewis],
+  // [Kabum.name, Kabum],
+  // [KomplettNO.name, KomplettNO],
+  // [LandmarkComputers.name, LandmarkComputers],
+  // [Ldlc.name, Ldlc],
+  // [LdlcEs.name, LdlcEs],
+  // [LDLCItaly.name, LDLCItaly],
+  // [Materiel.name, Materiel],
+  // [Mediamarkt.name, Mediamarkt],
+  // [MediamarktAt.name, MediamarktAt],
+  // [Medimax.name, Medimax],
+  // [Megekko.name, Megekko],
+  // [MemoryExpress.name, MemoryExpress],
+  // [MicroCenter.name, MicroCenter],
+  // [Microsoft.name, Microsoft],
+  // [MicrosoftCA.name, MicrosoftCA],
+  // [MightyApe.name, MightyApe],
+  // [Mindfactory.name, Mindfactory],
+  // [MSI.name, MSI],
+  // [Msy.name, Msy],
+  // [Multicom.name, Multicom],
+  // [Mwave.name, Mwave],
+  // [NeoByte.name, NeoByte],
+  // [NetonnetNO.name, NetonnetNO],
+  // [Newegg.name, Newegg],
+  // [NeweggCa.name, NeweggCa],
+  // [NeweggSg.name, NeweggSg],
+  // [NoelLeeming.name, NoelLeeming],
+  // [Notebooksbilliger.name, Notebooksbilliger],
+  // [Novatech.name, Novatech],
+  // [NovoAtalho.name, NovoAtalho],
+  // [NvidiaDE.name, NvidiaDE],
+  // [NvidiaES.name, NvidiaES],
+  // [NvidiaFR.name, NvidiaFR],
+  // [NvidiaGB.name, NvidiaGB],
+  // [OfficeDepot.name, OfficeDepot],
+  // [Ollo.name, Ollo],
+  // [Opirata.name, Opirata],
+  // [Otto.name, Otto],
+  // [Overclockers.name, Overclockers],
+  // [PBTech.name, PBTech],
+  // [PCByte.name, PCByte],
+  // [Pccg.name, Pccg],
+  // [PCComponentes.name, PCComponentes],
+  // [PCDiga.name, PCDiga],
+  // [PCKing.name, PCKing],
+  // [PlayStation.name, PlayStation],
+  // [Pny.name, Pny],
+  // [PowerNO.name, PowerNO],
+  // [ProshopDE.name, ProshopDE],
+  // [ProshopDK.name, ProshopDK],
+  // [ProshopNO.name, ProshopNO],
+  // [Rosman.name, Rosman],
+  // [RosmanMelb.name, RosmanMelb],
+  // [Saturn.name, Saturn],
+  // [SaveOnIt.name, SaveOnIt],
+  // [Scan.name, Scan],
+  // [Scorptec.name, Scorptec],
+  // [ShopTo.name, ShopTo],
+  // [Siabyte.name, Siabyte],
+  // [SmythsToys.name, SmythsToys],
+  // [SmythsToysIE.name, SmythsToysIE],
+  // [Spielegrotte.name, Spielegrotte],
+  // [StormComputers.name, StormComputers],
+  // [Target.name, Target],
+  // [TescoIE.name, TescoIE],
+  // [TheWarehouse.name, TheWarehouse],
+  // [TopAchat.name, TopAchat],
+  // [ToysRUs.name, ToysRUs],
+  // [Ubiquiti.name, Ubiquiti],
+  // [UltimaInformatica.name, UltimaInformatica],
+  // [Umart.name, Umart],
+  // [Unieuro.name, Unieuro],
+  // [Very.name, Very],
+  // [VsGamers.name, VsGamers],
+  // [Vuugo.name, Vuugo],
+  // [Walmart.name, Walmart],
+  // [WalmartCa.name, WalmartCa],
+  // [WellsTechnology.name, WellsTechnology],
+  // [Wipoid.name, Wipoid],
+  // [Xbox.name, Xbox],
+  // [XtremMedia.name, XtremMedia],
+  // [Zotac.name, Zotac],
 ]);
 
 const brands = new Set();

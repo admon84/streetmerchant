@@ -498,11 +498,11 @@ async function isItemInStock(
   }
 
   if (store.labels.maxPrice) {
-    const maxPrice = 0; // config.store.maxPrice.series[link.series];
+    const maxPrice = config.store.maxPrice.model[link.model];
 
     link.price = await getPrice(page, store.labels.maxPrice, baseOptions);
 
-    if (link.price && link.price > maxPrice && maxPrice > 0) {
+    if (link.price && maxPrice && link.price > maxPrice && maxPrice > 0) {
       logger.info(Print.maxPrice(link, store, maxPrice, true));
       return false;
     }
