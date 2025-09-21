@@ -1,15 +1,16 @@
 import {Store} from '../store';
 
 export const PokemonCenter: Store = {
-  captchaDeterrent: {
-    hardLinks: [
-      'https://www.pokemoncenter.com/',
-      'https://www.pokemoncenter.com/category/tcg-cards',
-      'https://www.pokemoncenter.com/category/tcg-cards?category=boxed-sets',
-    ],
-    searchTerms: ['booster-display-box', 'booster-bundle', 'elite-trainer-box'],
-    searchUrl: 'https://www.pokemoncenter.com/search/%%s',
-  },
+  disableAdBlocker: true,
+  // captchaDeterrent: {
+  //   hardLinks: [
+  //     'https://www.pokemoncenter.com/',
+  //     'https://www.pokemoncenter.com/category/tcg-cards',
+  //     'https://www.pokemoncenter.com/category/tcg-cards?category=boxed-sets',
+  //   ],
+  //   searchTerms: ['booster-display-box', 'booster-bundle', 'elite-trainer-box'],
+  //   searchUrl: 'https://www.pokemoncenter.com/search/%%s',
+  // },
   currency: '$',
   labels: {
     captcha: {
@@ -68,5 +69,5 @@ export const PokemonCenter: Store = {
     [200, 299],
     [400, 404],
   ],
-  waitUntil: 'networkidle0',
+  waitUntil: 'domcontentloaded',
 };

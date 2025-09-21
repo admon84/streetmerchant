@@ -2,6 +2,7 @@ import {Browser, launch} from 'puppeteer';
 import {config} from '../src/config';
 import {logger} from '../src/logger';
 import {Link, Store} from '../src/store/model';
+import * as proxyChain from 'proxy-chain';
 
 export function getTestLink(): Link {
   const link: Link = {
@@ -57,6 +58,8 @@ export function getTestStore(): Store {
   return store;
 }
 
+let activeProxyServer: string | undefined;
+
 export async function launchTestBrowser(): Promise<Browser> {
   const args: string[] = [];
 
@@ -78,11 +81,41 @@ export async function launchTestBrowser(): Promise<Browser> {
     config.browser.open = false;
   }
 
+  // Add SSL certificate handling flags for proxies
+  args.push('--ignore-certificate-errors');
+  args.push('--ignore-ssl-errors');
+  args.push('--ignore-certificate-errors-spki-list');
+  args.push('--disable-web-security');
+  args.push('--allow-running-insecure-content');
+
+  let proxyServer: string | undefined;
+
   // Add the address of the proxy server if defined
   if (config.proxy.address) {
-    args.push(
-      `--proxy-server=${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`
-    );
+    // If proxy authentication is required, use proxyChain
+    if (config.proxy.user && config.proxy.pass) {
+      try {
+        const originalProxyUrl = `${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`;
+
+        // Create an anonymous proxy that handles authentication
+        proxyServer = await proxyChain.anonymizeProxy(originalProxyUrl);
+        activeProxyServer = proxyServer;
+
+        logger.info(
+          `ℹ Using authenticated proxy via proxyChain: ${proxyServer}`
+        );
+        args.push(`--proxy-server=${proxyServer}`);
+      } catch (error) {
+        logger.error('Failed to create authenticated proxy:', error);
+        // Fallback to basic proxy without authentication
+        const proxyUrl = `${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`;
+        args.push(`--proxy-server=${proxyUrl}`);
+      }
+    } else {
+      // No authentication needed
+      const proxyUrl = `${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`;
+      args.push(`--proxy-server=${proxyUrl}`);
+    }
   }
 
   if (args.length > 0) {
@@ -96,6 +129,7 @@ export async function launchTestBrowser(): Promise<Browser> {
       width: config.page.width,
     },
     headless: config.browser.isHeadless,
+    ignoreHTTPSErrors: true, // Additional SSL error handling
   });
 
   config.browser.userAgent = await browser.userAgent();

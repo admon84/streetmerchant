@@ -1,6 +1,7 @@
 import {Store} from '../store';
 
 export const Walmart: Store = {
+  disableAdBlocker: true,
   currency: '$',
   captchaDeterrent: {
     hardLinks: [
@@ -15,6 +16,10 @@ export const Walmart: Store = {
     ],
   },
   labels: {
+    captcha: {
+      container: 'body',
+      text: ['made us think you were a bot'],
+    },
     inStock: {
       container: '.button.spin-button.prod-ProductCTA--primary.button--primary',
       text: ['add to cart'],
@@ -86,5 +91,5 @@ export const Walmart: Store = {
     [200, 299],
     [400, 404],
   ],
-  waitUntil: 'networkidle0',
+  waitUntil: 'domcontentloaded',
 };

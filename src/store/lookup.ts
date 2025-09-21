@@ -147,6 +147,22 @@ async function handleAdBlock(request: HTTPRequest, adBlockRequestHandler: any) {
   });
 }
 
+async function performHumanActions(page: Page) {
+  try {
+    await page.mouse.move(100 + Math.random() * 200, 100 + Math.random() * 200);
+    await page.waitForTimeout(300 + Math.random() * 500);
+    await page.evaluate(() => {
+      window.scrollBy(0, Math.floor(200 + Math.random() * 600));
+    });
+    await page.waitForTimeout(300 + Math.random() * 700);
+    await page.evaluate(() => {
+      window.scrollBy(0, -Math.floor(50 + Math.random() * 150));
+    });
+  } catch {
+    // best effort; ignore
+  }
+}
+
 /**
  * Responsible for looking up information about a each product within
  * a `Store`. It's important that we ignore `no-await-in-loop` here
@@ -193,12 +209,25 @@ async function lookup(browser: Browser, store: Store) {
     const context = customContext
       ? await browser.createIncognitoBrowserContext()
       : browser.defaultBrowserContext();
-    const page = await context.newPage();
-    await page.setRequestInterception(true);
 
-    page.setDefaultNavigationTimeout(config.page.timeout);
+    const page = await context.newPage();
+
+    await page.authenticate({
+      username: config.proxy.user,
+      password: config.proxy.pass,
+    });
+
+    await page.setJavaScriptEnabled(true);
+    await page.setExtraHTTPHeaders({'Accept-Language': 'en-US,en;q=0.9'});
+    try {
+      await page.emulateTimezone('America/New_York');
+    } catch {}
+
+    // Increase nav timeout to at least 90s
+    page.setDefaultNavigationTimeout(Math.max(config.page.timeout, 90000));
     await page.setUserAgent(await getRandomUserAgent());
 
+    const needInterception = useAdBlock || !!proxy;
     let adBlockRequestHandler: any;
     let pageProxy;
     if (useAdBlock) {
@@ -228,26 +257,28 @@ async function lookup(browser: Browser, store: Store) {
       await enableBlockerInPage(pageProxy);
     }
 
-    await page.setRequestInterception(true);
-    page.on('request', async request => {
-      if (await handleLowBandwidth(request)) {
-        return;
-      }
+    if (needInterception) {
+      await page.setRequestInterception(true);
+      page.on('request', async request => {
+        if (await handleLowBandwidth(request)) {
+          return;
+        }
 
-      if (await handleAdBlock(request, adBlockRequestHandler)) {
-        return;
-      }
+        if (await handleAdBlock(request, adBlockRequestHandler)) {
+          return;
+        }
 
-      if (await handleProxy(request, proxy)) {
-        return;
-      }
+        if (await handleProxy(request, proxy)) {
+          return;
+        }
 
-      try {
-        await request.continue();
-      } catch {
-        logger.debug('Failed to continue request.');
-      }
-    });
+        try {
+          await request.continue();
+        } catch {
+          logger.debug('Failed to continue request.');
+        }
+      });
+    }
 
     if (store.captchaDeterrent) {
       await runCaptchaDeterrent(browser, store, page);
@@ -313,6 +344,8 @@ async function lookupIem(
   const response: HTTPResponse | null = await page.goto(link.url, {
     waitUntil: givenWaitFor,
   });
+
+  await performHumanActions(page);
 
   const successStatusCodes = store.successStatusCodes ?? [[0, 399]];
   const statusCode = await handleResponse(browser, store, page, link, response);
@@ -558,7 +591,7 @@ async function runCaptchaDeterrent(browser: Browser, store: Store, page: Page) {
 
     if (!isStatusCodeInRange(statusCode, successStatusCodes)) {
       logger.warn(
-        `✖ [${store.name}] - Failed to navigate to anti-captcha target: ${link.url}`
+        `✖ [${store.name}] - Failed to navigate to anti-captcha target: ${link.url} - statusCode: ${statusCode}`
       );
     }
   }

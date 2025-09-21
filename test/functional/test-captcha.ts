@@ -1,3 +1,4 @@
+import {config} from '../../src/config';
 import {handleCaptchaAsync} from '../../src/store/captcha-handler';
 import {getTestStore, launchTestBrowser} from '../util';
 
@@ -8,6 +9,13 @@ const store = getTestStore();
 (async () => {
   const browser = await launchTestBrowser();
   const page = await browser.newPage();
+
+  await page.authenticate({
+    username: config.proxy.user,
+    password: config.proxy.pass,
+  });
+  await page.setJavaScriptEnabled(true);
+
   page.goto(store.links[1].url, {waitUntil: 'networkidle0'});
   await page.waitForSelector(store.labels.captchaHandler!.challenge);
   await handleCaptchaAsync(page, store);

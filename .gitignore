@@ -4,6 +4,7 @@
 build/
 coverage/
 node_modules/
+.puppeteer_profile/
 
 .env
 dotenv

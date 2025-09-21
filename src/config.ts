@@ -425,6 +425,8 @@ const proxy = {
   address: envOrString(process.env.PROXY_ADDRESS),
   port: envOrNumber(process.env.PROXY_PORT, 80),
   protocol: envOrString(process.env.PROXY_PROTOCOL, 'http'),
+  user: envOrString(process.env.PROXY_USER),
+  pass: envOrString(process.env.PROXY_PASS),
 };
 
 // Check for deprecated configuration values

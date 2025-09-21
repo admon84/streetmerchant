@@ -1,6 +1,7 @@
 import {Store} from '../store';
 
 export const Target: Store = {
+  // disableAdBlocker: true,
   currency: '$',
   captchaDeterrent: {
     hardLinks: [
@@ -16,6 +17,10 @@ export const Target: Store = {
     ],
   },
   labels: {
+    captcha: {
+      container: 'body',
+      text: ['made us think you were a bot'],
+    },
     inStock: [
       {
         container: '[data-test="preorderButton"]',
@@ -75,5 +80,5 @@ export const Target: Store = {
     [200, 299],
     [400, 404],
   ],
-  waitUntil: 'networkidle0',
+  waitUntil: 'domcontentloaded',
 };

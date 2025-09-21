@@ -6,8 +6,10 @@ import {getSleepTime} from './util';
 import {logger} from './logger';
 import {storeList} from './store/model';
 import {tryLookupAndLoop} from './store';
+import * as proxyChain from 'proxy-chain';
 
 let browser: Browser | undefined;
+let activeProxyServer: string | undefined;
 
 async function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -50,6 +52,17 @@ async function stop() {
     const browserTemporary = browser;
     browser = undefined;
     await browserTemporary.close();
+  }
+
+  // Clean up proxy server if it was created
+  if (activeProxyServer) {
+    try {
+      await proxyChain.closeAnonymizedProxy(activeProxyServer, true);
+      activeProxyServer = undefined;
+      logger.info('ℹ Closed proxyChain server');
+    } catch (error) {
+      logger.error('Error closing proxy server:', error);
+    }
   }
 }
 
@@ -95,17 +108,43 @@ export async function launchBrowser(): Promise<Browser> {
     config.browser.open = false;
   }
 
+  // Add SSL certificate handling flags for proxies
+  args.push('--ignore-certificate-errors');
+  args.push('--ignore-ssl-errors');
+  args.push('--ignore-certificate-errors-spki-list');
+  // Removed: --allow-running-insecure-content
+
   // Add the address of the proxy server if defined
   if (config.proxy.address) {
-    args.push(
-      `--proxy-server=${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`
-    );
+    // If proxy authentication is required, use proxyChain
+    if (config.proxy.user && config.proxy.pass) {
+      try {
+        const originalProxyUrl = `${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`;
+
+        // Create an anonymous proxy that handles authentication
+        activeProxyServer = await proxyChain.anonymizeProxy(originalProxyUrl);
+
+        logger.info(
+          `ℹ Using authenticated proxy via proxyChain: ${activeProxyServer}`
+        );
+        args.push(`--proxy-server=${activeProxyServer}`);
+      } catch (error) {
+        logger.error('Failed to create authenticated proxy:', error);
+        // Fallback to basic proxy without authentication
+        const proxyUrl = `${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`;
+        args.push(`--proxy-server=${proxyUrl}`);
+      }
+    } else {
+      // No authentication needed
+      const proxyUrl = `${config.proxy.protocol}://${config.proxy.address}:${config.proxy.port}`;
+      args.push(`--proxy-server=${proxyUrl}`);
+    }
   }
 
   // Additional arguments to avoid bot detection
   args.push('--disable-blink-features=AutomationControlled');
   args.push('--disable-features=VizDisplayCompositor');
-  args.push('--disable-web-security');
+  // Removed: --disable-web-security
   args.push('--disable-features=TranslateUI');
   args.push('--disable-ipc-flooding-protection');
 
@@ -113,9 +152,11 @@ export async function launchBrowser(): Promise<Browser> {
     logger.info('ℹ puppeteer config: ', args);
   }
 
-  await stop();
+  // await stop();
   const browser = await Puppeteer.launch({
-    executablePath: '/opt/homebrew/bin/chromium',
+    executablePath:
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    userDataDir: `${Process.cwd()}/.puppeteer_profile`,
     args,
     defaultViewport: {
       height: config.page.height,
@@ -123,6 +164,7 @@ export async function launchBrowser(): Promise<Browser> {
     },
     headless: config.browser.isHeadless,
     ignoreDefaultArgs: ['--enable-automation'],
+    ignoreHTTPSErrors: true, // Additional SSL error handling
   });
 
   config.browser.userAgent = await browser.userAgent();
@@ -130,6 +172,15 @@ export async function launchBrowser(): Promise<Browser> {
   // Remove webdriver property and other automation indicators
   const pages = await browser.pages();
   for (const page of pages) {
+    await page.setExtraHTTPHeaders({
+      'Accept-Language': 'en-US,en;q=0.9',
+    });
+    try {
+      await page.emulateTimezone('America/New_York');
+    } catch {
+      // Best effort; ignore if not supported
+    }
+
     await page.evaluateOnNewDocument(() => {
       Object.defineProperty(navigator, 'webdriver', {
         get: () => undefined,

@@ -64,6 +64,13 @@ export async function usingPage<T>(
   cb: (page: Page, browser: Browser) => Promise<T>
 ): Promise<T> {
   const page = await browser.newPage();
+
+  await page.authenticate({
+    username: config.proxy.user,
+    password: config.proxy.pass,
+  });
+
+  await page.setJavaScriptEnabled(true);
   page.setDefaultNavigationTimeout(config.page.timeout);
   await page.setUserAgent(await getRandomUserAgent());
 
