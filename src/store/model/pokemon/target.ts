@@ -1,4 +1,4 @@
-import {Store} from '../store';
+import {Store, Brand, Series, Model} from '../store';
 
 export const Target: Store = {
   // disableAdBlocker: true,
@@ -36,40 +36,56 @@ export const Target: Store = {
     },
   },
   links: [
+    // Mega Booster Bundle — 94681782
+    // Mega Booster Box — 94886127
+    // Mega Gardevoir ETB — 94681784
+    // Mega Lucario ETB — 94681776
+    // Mega Sleeved Booster 1 — 94681787
+    // Mega Sleeved Booster 2 — 94681769
+    // Mega Checklane Blister — 94681764
+    // Mega Golduck 3PK Blister — 94681786
+    // Mega Psyduck 3PK Blister — 94681766
     {
-      brand: 'pokemon',
-      model: 'elite-trainer-box',
-      series: 'mega-evolution',
+      brand: Brand.Pokemon,
+      model: Model.BoosterBundle,
+      series: Series.MegaEvolution,
+      url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94681782',
+    },
+
+    {
+      brand: Brand.Pokemon,
+      model: Model.EliteTrainerBox,
+      series: Series.MegaEvolution,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94681776',
     },
     {
-      brand: 'pokemon',
-      model: 'elite-trainer-box',
-      series: 'mega-evolution',
+      brand: Brand.Pokemon,
+      model: Model.EliteTrainerBox,
+      series: Series.MegaEvolution,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94681784',
     },
     {
-      brand: 'pokemon',
-      model: 'booster-bundle',
-      series: 'mega-evolution',
+      brand: Brand.Pokemon,
+      model: Model.BoosterBundle,
+      series: Series.MegaEvolution,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94681782',
     },
     {
-      brand: 'pokemon',
-      model: 'booster-display-box',
-      series: 'mega-evolution',
+      brand: Brand.Pokemon,
+      model: Model.BoosterDisplayBox,
+      series: Series.MegaEvolution,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94886127',
     },
     {
-      brand: 'pokemon',
-      model: 'booster-bundle',
-      series: 'destined-rivals',
+      brand: Brand.Pokemon,
+      model: Model.BoosterBundle,
+      series: Series.DestinedRivals,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94300067',
     },
     {
-      brand: 'pokemon',
-      model: 'elite-trainer-box',
-      series: 'destined-rivals',
+      brand: Brand.Pokemon,
+      model: Model.EliteTrainerBox,
+      series: Series.DestinedRivals,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94300069',
     },
   ],

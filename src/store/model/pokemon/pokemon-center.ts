@@ -1,4 +1,4 @@
-import {Store} from '../store';
+import {Store, Brand, Series, Model} from '../store';
 
 export const PokemonCenter: Store = {
   disableAdBlocker: true,
@@ -32,33 +32,33 @@ export const PokemonCenter: Store = {
   },
   links: [
     {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
+      brand: Brand.TestBrand,
+      model: Model.TestModel,
+      series: Series.TestSeries,
       url: 'https://www.pokemoncenter.com/product/290-80906/',
     },
     {
-      brand: 'pokemon',
-      model: 'booster-display-box',
-      series: 'phantasmal-flames',
+      brand: Brand.Pokemon,
+      model: Model.BoosterDisplayBox,
+      series: Series.PhantasmalFlames,
       url: 'https://www.pokemoncenter.com/product/10-10190-119/',
     },
     {
-      brand: 'pokemon',
-      model: 'booster-bundle',
-      series: 'phantasmal-flames',
+      brand: Brand.Pokemon,
+      model: Model.BoosterBundle,
+      series: Series.PhantasmalFlames,
       url: 'https://www.pokemoncenter.com/product/10-10191-109/',
     },
     {
-      brand: 'pokemon',
-      model: 'elite-trainer-box',
-      series: 'phantasmal-flames',
+      brand: Brand.Pokemon,
+      model: Model.EliteTrainerBox,
+      series: Series.PhantasmalFlames,
       url: 'https://www.pokemoncenter.com/product/10-10186-109/',
     },
     {
-      brand: 'pokemon',
-      model: 'elite-trainer-box',
-      series: 'prismatic-evolution',
+      brand: Brand.Pokemon,
+      model: Model.EliteTrainerBox,
+      series: Series.PrismaticEvolution,
       url: 'https://www.pokemoncenter.com/product/100-10019',
     },
   ],

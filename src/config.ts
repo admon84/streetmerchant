@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import {existsSync, readFileSync} from 'fs';
 import path from 'path';
 import {banner} from './banner';
-import {SERIES, Model} from './store/model/constants';
+import {SERIES, TModel} from './store/model/constants';
 
 if (process.env.npm_config_conf) {
   if (
@@ -469,7 +469,7 @@ const store = {
         process.env.MAX_PRICE_MODEL_BOOSTER_DISPLAY_BOX
       ),
       'surprise-box': envOrNumber(process.env.MAX_PRICE_MODEL_SURPRISE_BOX),
-    } as Record<Model, number | undefined>,
+    } as Record<TModel, number | undefined>,
     // series: {
     //   3050: envOrNumber(process.env.MAX_PRICE_SERIES_3050),
     //   3060: envOrNumber(process.env.MAX_PRICE_SERIES_3060),

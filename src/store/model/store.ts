@@ -1,5 +1,5 @@
 import {Browser, PuppeteerLifeCycleEvent} from 'puppeteer';
-import {Brand, Series, Model} from './constants';
+import {TBrand, TSeries, TModel} from './constants';
 
 export type Element = {
   container?: string;
@@ -12,17 +12,27 @@ export type Pricing = {
 };
 
 // Re-export constants and types from separate file to avoid circular dependencies
-export {BRANDS, SERIES, MODELS, Brand, Series, Model} from './constants';
+export {
+  BRANDS,
+  SERIES,
+  MODELS,
+  Brand,
+  Series,
+  Model,
+  TBrand,
+  TSeries,
+  TModel,
+} from './constants';
 
 export type Link = {
-  brand: Brand;
+  brand: TBrand;
   cartUrl?: string;
   itemNumber?: string;
   labels?: Labels;
-  model: Model;
+  model: TModel;
   openCartAction?: (browser: Browser) => Promise<string>;
   price?: number | null;
-  series: Series;
+  series: TSeries;
   screenshot?: string;
   url: string;
 };
@@ -65,11 +75,11 @@ export type Store = {
   disableAdBlocker?: boolean;
   links: Link[];
   linksBuilder?: {
-    builder: (docElement: cheerio.Cheerio, series: Series) => Link[];
+    builder: (docElement: cheerio.Cheerio, series: TSeries) => Link[];
     ttl?: number;
     waitUntil?: PuppeteerLifeCycleEvent;
     waitForSelector?: string;
-    urls: Array<{series: Series; url: string | string[]}>;
+    urls: Array<{series: TSeries; url: string | string[]}>;
   };
   labels: Labels;
   name: string;

@@ -1,11 +1,11 @@
-import {Link, Series, Store} from './model';
+import {Link, TSeries, Store} from './model';
 import {Print, logger} from '../logger';
 import {Browser} from 'puppeteer';
 import cheerio from 'cheerio';
 import {filterSeries} from './filter';
 import {usingPage} from '../util';
 
-function addNewLinks(store: Store, links: Link[], series: Series) {
+function addNewLinks(store: Store, links: Link[], series: TSeries) {
   if (links.length === 0) {
     logger.debug(Print.message('NO STORE LINKS FOUND', series, store, true));
 
