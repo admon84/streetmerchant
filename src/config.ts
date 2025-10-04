@@ -469,6 +469,30 @@ const store = {
         process.env.MAX_PRICE_MODEL_BOOSTER_DISPLAY_BOX
       ),
       'surprise-box': envOrNumber(process.env.MAX_PRICE_MODEL_SURPRISE_BOX),
+      'booster-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BOOSTER_PACK),
+      'mini-tin-2-pack': envOrNumber(
+        process.env.MAX_PRICE_MODEL_MINI_TIN_2_PACK
+      ),
+      'blister-2-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BLISTER_2_PACK),
+      'blister-3-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BLISTER_3_PACK),
+      'booster-bundle-2-pack': envOrNumber(
+        process.env.MAX_PRICE_MODEL_BOOSTER_BUNDLE_2_PACK
+      ),
+      'mini-tin-display': envOrNumber(
+        process.env.MAX_PRICE_MODEL_MINI_TIN_DISPLAY
+      ),
+      'poster-collection': envOrNumber(
+        process.env.MAX_PRICE_MODEL_POSTER_COLLECTION
+      ),
+      'binder-collection': envOrNumber(
+        process.env.MAX_PRICE_MODEL_BINDER_COLLECTION
+      ),
+      'unova-collection': envOrNumber(
+        process.env.MAX_PRICE_MODEL_UNOVA_COLLECTION
+      ),
+      'box-2-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BOX_2_PACK),
+      'box-3-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BOX_3_PACK),
+      upc: envOrNumber(process.env.MAX_PRICE_MODEL_UPC),
     } as Record<TModel, number | undefined>,
     // series: {
     //   3050: envOrNumber(process.env.MAX_PRICE_SERIES_3050),

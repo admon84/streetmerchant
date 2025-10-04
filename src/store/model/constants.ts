@@ -30,12 +30,22 @@ export const Series = {
 export const Model = {
   TestModel: 'test:model',
   CaptchaDeterrent: 'captcha-deterrent',
-  SingleBoosterPack: 'single-booster-pack',
-  ThreePackBlister: 'three-pack-blister',
-  BoosterDisplayBox: 'booster-display-box',
+  BoosterPack: 'booster-pack',
+  MiniTin2Pack: 'mini-tin-2-pack',
+  Blister2Pack: 'blister-2-pack',
+  Blister3Pack: 'blister-3-pack',
   BoosterBundle: 'booster-bundle',
+  BoosterBundle2Pack: 'booster-bundle-2-pack',
   EliteTrainerBox: 'elite-trainer-box',
+  MiniTinDisplay: 'mini-tin-display',
+  BoosterDisplayBox: 'booster-display-box',
+  PosterCollection: 'poster-collection',
+  BinderCollection: 'binder-collection',
+  UnovaCollection: 'unova-collection',
   SurpriseBox: 'surprise-box',
+  Box2Pack: 'box-2-pack',
+  Box3Pack: 'box-3-pack',
+  UPC: 'upc',
 } as const;
 
 // Types derived from the value objects
