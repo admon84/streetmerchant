@@ -38,19 +38,19 @@ export const Walmart: Store = {
     {
       brand: 'pokemon',
       model: 'booster-bundle',
-      series: 'scarlet-violet-white-flare',
+      series: 'white-flare',
       url: 'https://www.walmart.com/ip/Pokemon-TCG-Scarlet-Violet-10-5-White-Bolt-Booster-Bundle-Set-6-Packs/16516160047',
     },
     {
       brand: 'pokemon',
       model: 'booster-bundle',
-      series: 'scarlet-violet-black-bolt',
+      series: 'black-bolt',
       url: 'https://www.walmart.com/ip/Pokemon-TCG-Scarlet-Violet-Black-Bolt-Booster-Bundle/16484003729',
     },
     {
       brand: 'pokemon',
       model: 'booster-bundle',
-      series: 'scarlet-violet-prismatic-evolution',
+      series: 'prismatic-evolution',
       url: 'https://www.walmart.com/ip/Pokemon-TCG-Scarlet-Violet-Prismatic-Evolution-Booster-Bundle/14803962651',
     },
     {
@@ -74,13 +74,13 @@ export const Walmart: Store = {
     {
       brand: 'pokemon',
       model: 'elite-trainer-box',
-      series: 'scarlet-violet-white-flare',
+      series: 'white-flare',
       url: 'https://www.walmart.com/ip/Pokemon-TCG-White-Flare-Elite-Trainer-Box/16446322202',
     },
     {
       brand: 'pokemon',
       model: 'elite-trainer-box',
-      series: 'scarlet-violet-black-bolt',
+      series: 'black-bolt',
       url: 'https://www.walmart.com/ip/Pokemon-TCG-Black-Bolt-Elite-Trainer-Box/16498668973',
     },
   ],

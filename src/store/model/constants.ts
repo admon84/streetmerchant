@@ -6,21 +6,21 @@ export const SERIES = [
   'captcha-deterrent',
   'crown-zenith',
   'scarlet-violet',
-  'scarlet-violet-prismatic-evolution',
-  'scarlet-violet-journey-together',
-  'scarlet-violet-destined-rivals',
-  'scarlet-violet-black-bolt',
-  'scarlet-violet-white-flare',
-  'scarlet-violet-stellar-crown',
-  'scarlet-violet-shrouded-fable',
-  'scarlet-violet-twilight-masquerade',
-  'scarlet-violet-temporal-forces',
-  'scarlet-violet-paldean-fates',
-  'scarlet-violet-paradox-rift',
-  'scarlet-violet-obsidian-flames',
-  'scarlet-violet-paldea-evolved',
+  'prismatic-evolution', // scarlet-violet
+  'journey-together', // scarlet-violet
+  'destined-rivals', // scarlet-violet
+  'black-bolt', // scarlet-violet
+  'white-flare', // scarlet-violet
+  'stellar-crown', // scarlet-violet
+  'shrouded-fable', // scarlet-violet
+  'twilight-masquerade', // scarlet-violet
+  'temporal-forces', // scarlet-violet
+  'paldean-fates', // scarlet-violet
+  'paradox-rift', // scarlet-violet
+  'obsidian-flames', // scarlet-violet
+  'paldea-evolved', // scarlet-violet
   'mega-evolution',
-  'mega-evolution-phantasmal-flames',
+  'phantasmal-flames', // mega-evolution
 ] as const;
 
 export const MODELS = [
