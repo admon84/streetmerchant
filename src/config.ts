@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import {existsSync, readFileSync} from 'fs';
 import path from 'path';
 import {banner} from './banner';
-import {SERIES, TModel} from './store/model/constants';
+import {SERIES, Model, TModel} from './store/model/constants';
 
 if (process.env.npm_config_conf) {
   if (
@@ -453,105 +453,53 @@ const store = {
   country: envOrString(process.env.COUNTRY, 'usa'),
   maxPrice: {
     model: {
-      'test:model': 0,
-      'captcha-deterrent': 0,
-      'single-booster-pack': envOrNumber(
+      [Model.TestModel]: 0,
+      [Model.CaptchaDeterrent]: 0,
+      [Model.BoosterPack]: envOrNumber(
         process.env.MAX_PRICE_MODEL_SINGLE_BOOSTER_PACK
       ),
-      'three-pack-blister': envOrNumber(
-        process.env.MAX_PRICE_MODEL_THREE_PACK_BLISTER
-      ),
-      'elite-trainer-box': envOrNumber(
+      [Model.EliteTrainerBox]: envOrNumber(
         process.env.MAX_PRICE_MODEL_ELITE_TRAINER_BOX
       ),
-      'booster-bundle': envOrNumber(process.env.MAX_PRICE_MODEL_BOOSTER_BUNDLE),
-      'booster-display-box': envOrNumber(
+      [Model.BoosterBundle]: envOrNumber(
+        process.env.MAX_PRICE_MODEL_BOOSTER_BUNDLE
+      ),
+      [Model.BoosterDisplayBox]: envOrNumber(
         process.env.MAX_PRICE_MODEL_BOOSTER_DISPLAY_BOX
       ),
-      'surprise-box': envOrNumber(process.env.MAX_PRICE_MODEL_SURPRISE_BOX),
-      'booster-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BOOSTER_PACK),
-      'mini-tin-2-pack': envOrNumber(
+      [Model.SurpriseBox]: envOrNumber(
+        process.env.MAX_PRICE_MODEL_SURPRISE_BOX
+      ),
+      [Model.MiniTin2Pack]: envOrNumber(
         process.env.MAX_PRICE_MODEL_MINI_TIN_2_PACK
       ),
-      'blister-2-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BLISTER_2_PACK),
-      'blister-3-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BLISTER_3_PACK),
-      'booster-bundle-2-pack': envOrNumber(
+      [Model.Blister2Pack]: envOrNumber(
+        process.env.MAX_PRICE_MODEL_BLISTER_2_PACK
+      ),
+      [Model.Blister3Pack]: envOrNumber(
+        process.env.MAX_PRICE_MODEL_BLISTER_3_PACK
+      ),
+      [Model.BoosterBundle2Pack]: envOrNumber(
         process.env.MAX_PRICE_MODEL_BOOSTER_BUNDLE_2_PACK
       ),
-      'mini-tin-display': envOrNumber(
+      [Model.MiniTinDisplay]: envOrNumber(
         process.env.MAX_PRICE_MODEL_MINI_TIN_DISPLAY
       ),
-      'poster-collection': envOrNumber(
+      [Model.Box2Pack]: envOrNumber(process.env.MAX_PRICE_MODEL_BOX_2_PACK),
+      [Model.Box3Pack]: envOrNumber(process.env.MAX_PRICE_MODEL_BOX_3_PACK),
+      [Model.PosterCollection]: envOrNumber(
         process.env.MAX_PRICE_MODEL_POSTER_COLLECTION
       ),
-      'binder-collection': envOrNumber(
+      [Model.BinderCollection]: envOrNumber(
         process.env.MAX_PRICE_MODEL_BINDER_COLLECTION
       ),
-      'unova-collection': envOrNumber(
+      [Model.UnovaCollection]: envOrNumber(
         process.env.MAX_PRICE_MODEL_UNOVA_COLLECTION
       ),
-      'box-2-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BOX_2_PACK),
-      'box-3-pack': envOrNumber(process.env.MAX_PRICE_MODEL_BOX_3_PACK),
-      upc: envOrNumber(process.env.MAX_PRICE_MODEL_UPC),
+      [Model.UltimatePremiumCollection]: envOrNumber(
+        process.env.MAX_PRICE_MODEL_ULTIMATE_PREMIUM_COLLECTION
+      ),
     } as Record<TModel, number | undefined>,
-    // series: {
-    //   3050: envOrNumber(process.env.MAX_PRICE_SERIES_3050),
-    //   3060: envOrNumber(process.env.MAX_PRICE_SERIES_3060),
-    //   '3060ti': envOrNumber(process.env.MAX_PRICE_SERIES_3060TI),
-    //   3070: envOrNumber(process.env.MAX_PRICE_SERIES_3070),
-    //   '3070ti': envOrNumber(process.env.MAX_PRICE_SERIES_3070TI),
-    //   3080: envOrNumber(process.env.MAX_PRICE_SERIES_3080),
-    //   '3080ti': envOrNumber(process.env.MAX_PRICE_SERIES_3080TI),
-    //   3090: envOrNumber(process.env.MAX_PRICE_SERIES_3090),
-    //   4060: envOrNumber(process.env.MAX_PRICE_SERIES_4060),
-    //   4070: envOrNumber(process.env.MAX_PRICE_SERIES_4070),
-    //   '4070super': envOrNumber(process.env.MAX_PRICE_SERIES_4070SUPER),
-    //   '4070ti': envOrNumber(process.env.MAX_PRICE_SERIES_4070TI),
-    //   '4080-16g': envOrNumber(process.env.MAX_PRICE_SERIES_4080_16G),
-    //   4090: envOrNumber(process.env.MAX_PRICE_SERIES_4090),
-    //   5070: envOrNumber(process.env.MAX_PRICE_SERIES_5070),
-    //   '5070ti': envOrNumber(process.env.MAX_PRICE_SERIES_5070TI),
-    //   5080: envOrNumber(process.env.MAX_PRICE_SERIES_5080),
-    //   5090: envOrNumber(process.env.MAX_PRICE_SERIES_5090),
-    //   arc: envOrNumber(process.env.MAX_PRICE_SERIES_ARC),
-    //   'a3-matx': envOrNumber(process.env.MAX_PRICE_SERIES_A3_MATX),
-    //   'captcha-deterrent': 0,
-    //   darkhero: envOrNumber(process.env.MAX_PRICE_SERIES_DARKHERO),
-    //   'g4-doorbell-pro': envOrNumber(
-    //     process.env.MAX_PRICE_SERIES_G4_DOORBELL_PRO
-    //   ),
-    //   rx6700xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6700XT),
-    //   rx6800: envOrNumber(process.env.MAX_PRICE_SERIES_RX6800),
-    //   rx6800xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6800XT),
-    //   rx6900xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6900XT),
-    //   rx9070: envOrNumber(process.env.MAX_PRICE_SERIES_RX9070),
-    //   rx9070xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX9070XT),
-    //   ryzen5600: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5600),
-    //   ryzen5800: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5800),
-    //   ryzen5900: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5900),
-    //   ryzen5950: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN5950),
-    //   ryzen7950x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN7950X),
-    //   ryzen7800x3d: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN7800X3D),
-    //   ryzen9800x3d: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9800X3D),
-    //   ryzen9600x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9600X),
-    //   ryzen9700x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9700X),
-    //   ryzen9900x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9900X),
-    //   ryzen9900x3d: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9900X3D),
-    //   ryzen9950x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9950X),
-    //   ryzen9950x3d: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9950X3D),
-    //   sf: envOrNumber(process.env.MAX_PRICE_SERIES_CORSAIR_SF),
-    //   sonyps5c: envOrNumber(process.env.MAX_PRICE_SERIES_SONYPS5C),
-    //   sonyps5de: envOrNumber(process.env.MAX_PRICE_SERIES_SONYPS5DE),
-    //   switch2: envOrNumber(process.env.MAX_PRICE_SERIES_SWITCH2),
-    //   'test:series': envOrNumber(process.env.MAX_PRICE_SERIES_TEST),
-    //   'udm-pro': envOrNumber(process.env.MAX_PRICE_SERIES_UDM_PRO),
-    //   'udm-us': envOrNumber(process.env.MAX_PRICE_SERIES_UDM_US),
-    //   'udr-us': envOrNumber(process.env.MAX_PRICE_SERIES_UDR_US),
-    //   unvr: envOrNumber(process.env.MAX_PRICE_SERIES_UNVR),
-    //   'unvr-pro': envOrNumber(process.env.MAX_PRICE_SERIES_UNVR_PRO),
-    //   xboxss: envOrNumber(process.env.MAX_PRICE_SERIES_XBOXSS),
-    //   xboxsx: envOrNumber(process.env.MAX_PRICE_SERIES_XBOXSX),
-    // },
   },
   microCenterLocation: envOrArray(process.env.MICROCENTER_LOCATION, ['web']),
   showOnlyBrands: envOrArray(process.env.SHOW_ONLY_BRANDS),

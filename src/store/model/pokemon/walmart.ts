@@ -50,7 +50,7 @@ export const Walmart: Store = {
     {
       brand: Brand.Pokemon,
       model: Model.BoosterBundle,
-      series: Series.PrismaticEvolution,
+      series: Series.PrismaticEvolutions,
       url: 'https://www.walmart.com/ip/Pokemon-TCG-Scarlet-Violet-Prismatic-Evolution-Booster-Bundle/14803962651',
     },
     {

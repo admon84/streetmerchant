@@ -58,7 +58,7 @@ export const PokemonCenter: Store = {
     {
       brand: Brand.Pokemon,
       model: Model.EliteTrainerBox,
-      series: Series.PrismaticEvolution,
+      series: Series.PrismaticEvolutions,
       url: 'https://www.pokemoncenter.com/product/100-10019',
     },
   ],
