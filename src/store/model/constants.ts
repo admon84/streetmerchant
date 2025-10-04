@@ -69,6 +69,7 @@ export const Model = {
   PosterCollection: 'poster-collection',
   BinderCollection: 'binder-collection',
   UnovaCollection: 'unova-collection',
+  BloomingWaters: 'blooming-waters',
   UltimatePremiumCollection: 'ultimate-premium-collection',
 } as const;
 
