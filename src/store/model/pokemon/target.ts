@@ -311,49 +311,49 @@ export const Target: Store = {
     {
       brand: Brand.Pokemon,
       model: Model.BloomingWaters,
-      series: Series['151'],
+      series: Series.OneFiveOne,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-94724987',
     },
     // 151 UPC — 88897906
     {
       brand: Brand.Pokemon,
       model: Model.UltimatePremiumCollection,
-      series: Series['151'],
+      series: Series.OneFiveOne,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-88897906',
     },
     // 151 Booster Bundle — 88897904
     {
       brand: Brand.Pokemon,
       model: Model.BoosterBundle,
-      series: Series['151'],
+      series: Series.OneFiveOne,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-88897904',
     },
     // 151 Zapdos Box — 88897898
     {
       brand: Brand.Pokemon,
       model: Model.BoosterDisplayBox,
-      series: Series['151'],
+      series: Series.OneFiveOne,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-88897898',
     },
     // 151 Alakazam — 89444931
     {
       brand: Brand.Pokemon,
       model: Model.EliteTrainerBox,
-      series: Series['151'],
+      series: Series.OneFiveOne,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-89444931',
     },
     // 151 ETB — 88897899
     {
       brand: Brand.Pokemon,
       model: Model.EliteTrainerBox,
-      series: Series['151'],
+      series: Series.OneFiveOne,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-88897899',
     },
     // 151 Binder — 89444929
     {
       brand: Brand.Pokemon,
       model: Model.BinderCollection,
-      series: Series['151'],
+      series: Series.OneFiveOne,
       url: 'https://www.target.com/p/pokemon-trading-cards/-/A-89444929',
     },
     // 151 Poster — 89444928

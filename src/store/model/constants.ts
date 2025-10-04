@@ -32,7 +32,7 @@ export const Series = {
   ScarletViolet: 'scarlet-violet',
   PaldeaEvolved: 'paldea-evolved',
   ObsidianFlames: 'obsidian-flames',
-  '151': '151',
+  OneFiveOne: '151',
   ParadoxRift: 'paradox-rift',
   PaldeanFates: 'paldean-fates',
   TemporalForces: 'temporal-forces',
