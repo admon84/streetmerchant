@@ -401,7 +401,11 @@ function printConfig() {
   }
 
   if (config.store.showOnlySeries.length > 0) {
-    logger.info(`ℹ selected series: ${config.store.showOnlySeries.join(', ')}`);
+    logger.info(
+      `ℹ selected series: ${config.store.showOnlySeries
+        .map(series => series.replaceAll('-', ' '))
+        .join(', ')}`
+    );
   }
 
   if (config.store.stores.length > 0) {

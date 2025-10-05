@@ -242,26 +242,30 @@ function buildSetupString(
 }
 
 function buildProductString(link: Link, store: Store, color?: boolean): string {
+  const brand = link.brand.replaceAll('-', ' ');
+  const series = link.series.replaceAll('-', ' ');
+  const model = link.model.replaceAll('-', ' ');
+
   if (color) {
     if (store.currentProxyIndex !== undefined && store.proxyList) {
       const proxy = `${store.currentProxyIndex + 1}/${store.proxyList.length}`;
       return (
         chalk.gray(`[${proxy}]`) +
         chalk.cyan(` [${store.name}]`) +
-        chalk.grey(` [${link.brand} (${link.series})] ${link.model}`)
+        chalk.grey(` ${brand} ‣ ${series} ‣ ${model}`)
       );
     } else {
       return (
         chalk.cyan(`[${store.name}]`) +
-        chalk.grey(` [${link.brand} (${link.series})] ${link.model}`)
+        chalk.grey(` ${brand} ‣ ${series} ‣ ${model}`)
       );
     }
   }
 
   if (store.currentProxyIndex !== undefined && store.proxyList) {
     const proxy = `${store.currentProxyIndex + 1}/${store.proxyList.length}`;
-    return `[${proxy}] [${store.name}] [${link.brand} (${link.series})] ${link.model}`;
+    return `[${proxy}] [${store.name}] ${brand} ‣ ${series} ‣ ${model}`;
   } else {
-    return `[${store.name}] [${link.brand} (${link.series})] ${link.model}`;
+    return `[${store.name}] ${brand} ‣ ${series} ‣ ${model}`;
   }
 }

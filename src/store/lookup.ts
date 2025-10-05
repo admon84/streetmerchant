@@ -57,13 +57,40 @@ function nextProxy(store: Store) {
   return store.proxyList[store.currentProxyIndex];
 }
 
+const LOW_BANDWIDTH_BLOCKED_RESOURCE_TYPES: Set<string> = new Set([
+  'font',
+  'image',
+  'media',
+  'stylesheeet',
+  'stylesheet',
+  'track',
+  'websocket',
+]);
+
+const LOW_BANDWIDTH_BLOCKED_URL_PATTERNS: RegExp[] = [
+  /google-analytics\.com/i,
+  /googletagmanager\.com/i,
+  /doubleclick\.net/i,
+  /optimizely\.com/i,
+  /segment\.com/i,
+  /hotjar\.com/i,
+  /facebook\.com\/tr\//i,
+  /connect\.facebook\.net/i,
+  /analytics/i,
+  /metrics/i,
+];
+
 async function handleLowBandwidth(request: HTTPRequest) {
   if (!config.browser.lowBandwidth) {
     return false;
   }
 
   const typ = request.resourceType();
-  if (typ === 'font' || typ === 'image') {
+  const url = request.url();
+  if (
+    LOW_BANDWIDTH_BLOCKED_RESOURCE_TYPES.has(typ) ||
+    LOW_BANDWIDTH_BLOCKED_URL_PATTERNS.some(rx => rx.test(url))
+  ) {
     try {
       await request.abort();
     } catch {
@@ -227,7 +254,8 @@ async function lookup(browser: Browser, store: Store) {
     page.setDefaultNavigationTimeout(Math.max(config.page.timeout, 90000));
     await page.setUserAgent(await getRandomUserAgent());
 
-    const needInterception = useAdBlock || !!proxy;
+    const needInterception =
+      useAdBlock || !!proxy || config.browser.lowBandwidth;
     let adBlockRequestHandler: any;
     let pageProxy;
     if (useAdBlock) {
@@ -340,12 +368,18 @@ async function lookupIem(
   page: Page,
   link: Link
 ): Promise<number> {
-  const givenWaitFor = store.waitUntil ? store.waitUntil : 'networkidle0';
+  const givenWaitFor = config.browser.lowBandwidth
+    ? 'domcontentloaded'
+    : store.waitUntil
+    ? store.waitUntil
+    : 'networkidle0';
   const response: HTTPResponse | null = await page.goto(link.url, {
     waitUntil: givenWaitFor,
   });
 
-  await performHumanActions(page);
+  if (!config.browser.lowBandwidth) {
+    await performHumanActions(page);
+  }
 
   const successStatusCodes = store.successStatusCodes ?? [[0, 399]];
   const statusCode = await handleResponse(browser, store, page, link, response);
