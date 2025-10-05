@@ -499,6 +499,9 @@ const store = {
       [Model.UltimatePremiumCollection]: envOrNumber(
         process.env.MAX_PRICE_MODEL_ULTIMATE_PREMIUM_COLLECTION
       ),
+      [Model.BloomingWaters]: envOrNumber(
+        process.env.MAX_PRICE_MODEL_BLOOMING_WATERS
+      ),
     } as Record<TModel, number | undefined>,
   },
   microCenterLocation: envOrArray(process.env.MICROCENTER_LOCATION, ['web']),
