@@ -99,6 +99,8 @@ export async function launchTestBrowser(): Promise<Browser> {
 
         // Create an anonymous proxy that handles authentication
         proxyServer = await proxyChain.anonymizeProxy(originalProxyUrl);
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         activeProxyServer = proxyServer;
 
         logger.info(

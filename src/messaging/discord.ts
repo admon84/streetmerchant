@@ -4,7 +4,7 @@ import {config} from '../config';
 import {logger} from '../logger';
 import {Link, Store} from '../store/model';
 
-const {notifyGroup, webhooks, notifyGroupSeries} = config.notifications.discord;
+const {notifyGroup, webhooks} = config.notifications.discord;
 const {pollInterval, responseTimeout, token, userId} = config.captchaHandler;
 const clientOptions: Discord.ClientOptions = {
   intents: new Discord.Intents(),
@@ -55,14 +55,6 @@ export function sendDiscordMessage(link: Link, store: Store) {
 
         if (notifyGroup) {
           notifyText = notifyText.concat(notifyGroup);
-        }
-
-        const notifyKeys = Object.keys(notifyGroupSeries);
-        const notifyIndex = notifyKeys.indexOf(link.series);
-        if (notifyIndex !== -1) {
-          notifyText = notifyText.concat(
-            Object.values(notifyGroupSeries)[notifyIndex]
-          );
         }
 
         const promises = [];

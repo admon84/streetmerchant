@@ -1,5 +1,5 @@
 {
-  "name": "streetmerchant-pkmn",
+  "name": "streetmerchant",
   "version": "3.12.0",
   "main": "src/index.ts",
   "scripts": {
@@ -12,7 +12,7 @@
     "posttest": "npm run lint",
     "prestart": "npm run compile",
     "start": "node build/src/index.js",
-    "start:dev": "nodemon --config nodemon.json",
+    "dev": "nodemon --config nodemon.json",
     "test": "c8 mocha 'build/test/**/test-*.js' --exclude 'build/test/functional/**/test-*.js'",
     "test:notification": "npm run compile && node build/test/functional/test-notification.js",
     "test:notification:production": "node build/test/functional/test-notification.js",
@@ -24,15 +24,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jef/streetmerchant.git"
+    "url": "git+https://github.com/admon84/streetmerchant.git"
   },
   "keywords": [],
   "author": "jef",
+  "contributors": [
+    {
+      "name": "admon84",
+      "url": "https://github.com/admon84"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jef/streetmerchant/issues"
+    "url": "https://github.com/admon84/streetmerchant/issues"
   },
-  "homepage": "https://github.com/jef/streetmerchant#readme",
+  "homepage": "https://github.com/admon84/streetmerchant#readme",
   "dependencies": {
     "@doridian/puppeteer-page-proxy": "^1.2.11",
     "@jef/pushbullet": "^2.4.3",
@@ -80,8 +86,5 @@
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5",
     "webpack": "^5.50.0"
-  },
-  "volta": {
-    "node": "16.18.0"
   }
 }

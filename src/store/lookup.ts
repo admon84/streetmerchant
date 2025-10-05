@@ -248,7 +248,9 @@ async function lookup(browser: Browser, store: Store) {
     await page.setExtraHTTPHeaders({'Accept-Language': 'en-US,en;q=0.9'});
     try {
       await page.emulateTimezone('America/New_York');
-    } catch {}
+    } catch {
+      // do nothing, best effort
+    }
 
     // Increase nav timeout to at least 90s
     page.setDefaultNavigationTimeout(Math.max(config.page.timeout, 90000));

@@ -1,5 +1,7 @@
 import {Store, Brand, Series, Model} from '../store';
 
+// TODO: Add walmart queue detection (about to restock)
+
 export const Walmart: Store = {
   disableAdBlocker: true,
   currency: '$',
