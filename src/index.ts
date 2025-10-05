@@ -154,8 +154,6 @@ export async function launchBrowser(): Promise<Browser> {
 
   // await stop();
   const browser = await Puppeteer.launch({
-    executablePath:
-      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     userDataDir: `${Process.cwd()}/.puppeteer_profile`,
     args,
     defaultViewport: {
